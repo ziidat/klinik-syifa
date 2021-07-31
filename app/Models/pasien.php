@@ -9,4 +9,6 @@ class pasien extends Model
 {
     use HasFactory;
     protected $table = 'pasien';
+    protected $fillable = ['nama','tgl_lhr','pekerjaan','jk','alamat','hp','pendidikan','no_bpjs','alergi'];
+    public $primarykey = 'id';
 }

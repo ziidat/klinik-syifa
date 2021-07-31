@@ -22,8 +22,8 @@ class CreatePasienTable extends Migration
             $table->text('alamat');
             $table->string('hp');
             $table->string('pendidikan');
-            $table->string('no_bjs');
-            $table->text('alergi');
+            $table->string('no_bpjs')->nullable();
+            $table->text('alergi')->nullable();
             $table->timestamps();
         });
     }

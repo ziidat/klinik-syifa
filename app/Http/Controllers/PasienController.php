@@ -39,46 +39,30 @@ class PasienController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function simpan_pasien(Request $request)
+    public function store(Request $request)
     {
-        $this->validate($request, [
-            'Nama_Lengkap' => 'required|min:5|max:35',
-            'Tanggal_Lahir' => 'required|before:today',
-            'Alamat' => 'required',
-            'Pekerjaan' => 'required',
-            'no_handphone' => 'required|numeric',
-            'Jenis_Kelamin' => 'required',
-            'no_bpjs' => 'nullable|numeric|digits_between:1,15'
-        ]);
-        DB::table('pasien')->insert([
-            'nama' => $request->Nama_Lengkap,
-            'tgl_lhr' => $request->Tanggal_Lahir,
-            'alamat' => $request->Alamat,
-            'pekerjaan' => $request->Pekerjaan,
+        // $this->validate($request, [
+        //     'nama_lengkap' => 'required|min:5|max:35',
+        //     'tanggal_lahir' => 'required|before:today',
+        //     'alamat' => 'required',
+        //     'pekerjaan' => 'required',
+        //     'no_handphone' => 'required|numeric',
+        //     'jenis_kelamin' => 'required',
+        //     'no_bpjs' => 'nullable|numeric|digits_between:1,15'
+        // ]);
+        pasien::create([
+            'nama' => $request->nama_lengkap,
+            'tgl_lhr' => $request->tanggal_lahir,
+            'pekerjaan' => $request->pekerjaan,
+            'jk' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
             'hp' => $request->no_handphone,
-            'jk' => $request->Jenis_Kelamin,
-            'pendidikan' => $request->Pendidikan_terakhir,
+            'pendidikan' => $request->pendidikan_terakhir,
             'no_bpjs' => $request->no_bpjs,
             'alergi' => $request ->alergi,
-            'created_time' => Carbon::now(),
-            'updated_time' => Carbon::now(),
         ]);
-           $ids= DB::table('pasien')->latest('created_time')->first();         
-            switch($request->simpan) {
-                case 'simpan': 
-                    $buka=route('pasien.edit', $ids->id);
-                    $pesan='Data pasien berhasil disimpan!';
-                break;
-                case 'simpan_rm': 
-                    $buka=route('rm.list',$ids->id);
-                    $pesan='Data pasien berhasil disimpan!';
-                break;              
-                case 'simpan_baru': 
-                    $buka=route('pasien.tambah');
-                    $pesan='Data pasien berhasil disimpan!';
-                break;
-            }
-        return redirect($buka)->with('pesan',$pesan);
+
+        return redirect('tambah-pasien')->with('alert','Data Berhasil di simpan');
     }
 
     /**
@@ -87,9 +71,9 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function show(pasien $pasien)
+    public function show(pasien $id)
     {
-        //
+        return view('edit-pasien', ['id' => pasien::findOrFail($id)]);
     }
 
     /**
@@ -98,9 +82,9 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function edit(pasien $pasien)
+    public function edit($id)
     {
-        
+     //
     }
 
     /**
@@ -123,7 +107,9 @@ class PasienController extends Controller
      */
     public function destroy(pasien $pasien)
     {
-        //
+        $deleteUser = pasien::find($pasien->id);
+        $deleteUser->delete();
+        return redirect('pasien')->with('alert', 'User Berhasil Dihapus');
     }
 
 }

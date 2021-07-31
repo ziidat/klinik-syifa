@@ -32,27 +32,21 @@
         <td>{{ $pasien->tgl_lhr }}</td>
         <td>{{ $pasien->alamat }}</td>
         <td>{{ $pasien->hp }}</td>
-        <td><a href ="#" title="Buka RM" class="btn btn-circle btn-primary">
+        <td><a href ="#" title="Lihat" class="btn btn-circle btn-primary">
           <i class="fas fa-file"></i>
         </a>
-        <a href ="#" title="Edit" class="btn btn-circle btn-warning">
+        <a href ="pasien/{{ $pasien->id }}" title="Edit" class="btn btn-circle btn-warning">
           <i class="fas fa-pen"></i>
         </a>
-        <a href="javascript:;" data-toggle="modal" onclick="#" data-target="#DeleteModal" class="btn btn-circle btn-danger"><i class="fa fa-trash"></i></a>
+        <form action="{{route('pasien.delete',$pasien->id)}}" method="post" class="d-inline">
+          @method('delete')
+          @csrf
+          <button type="submit" class="btn btn-danger btn-sm btn-icon " data-toggle="modal" data-target="#modal-danger" value="Delete"><i class="fa fa-trash"></i></button>
+      </form>
+        </a>
       </td>
       </tr>
       @endforeach
-      <tr>
-        <td>Trident</td>
-        <td>Trident</td>
-        <td>Trident</td>
-        <td>Internet
-          Explorer 5.0
-        </td>
-        <td>Win 95+</td>
-        <td>5</td>
-        <td>C</td>
-      </tr>
       </tbody>
     </table>
   </div>
@@ -60,5 +54,24 @@
 </div>
 <!-- /.card -->
 
-
+@endsection
+@section('script')
+<script>
+$(function() {
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+$('.toastsDefaultDanger').click(function() {
+  $(document).Toasts('create', {
+    class: 'bg-danger',
+    title: 'Toast Title',
+    subtitle: 'Subtitle',
+    body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+  })
+});
+})
+</script>
 @endsection
