@@ -62,7 +62,7 @@ class PasienController extends Controller
             'alergi' => $request ->alergi,
         ]);
 
-        return redirect('tambah-pasien')->with('alert','Data Berhasil di simpan');
+        return redirect('tambah-pasien')->with('succes','Data Berhasil di simpan');
     }
 
     /**
@@ -71,9 +71,9 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function show(pasien $id)
+    public function show(pasien $request)
     {
-        return view('edit-pasien', ['id' => pasien::findOrFail($id)]);
+      return view('detail-pasien');  
     }
 
     /**
@@ -84,7 +84,8 @@ class PasienController extends Controller
      */
     public function edit($id)
     {
-     //
+        $pasien = pasien::findOrFail($id);
+        return view('edit-pasien', ['pasien' => $pasien]); 
     }
 
     /**
@@ -94,9 +95,21 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pasien $pasien)
+    public function update($id, pasien $request)
     {
-        //
+        $pasien = pasien::find($id);
+        $pasien -> nama ; $request->nama_lengkap;
+        $pasien -> tgl_lhr ; $request->tanggal_lahir;
+        $pasien -> pekerjaan ; $request->pekerjaan;
+        $pasien -> jk ; $request->jenis_kelamin;
+        $pasien -> alamat ; $request->alamat;
+        $pasien -> hp ; $request->no_handphone;
+        $pasien -> pendidikan ; $request->pendidikan_terakhir;
+        $pasien -> no_bpjs ; $request->no_bpjs;
+        $pasien -> alergi ; $request->alergi;
+    $pasien->save();
+    
+    return redirect('/pasien');
     }
 
     /**

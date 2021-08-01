@@ -16,7 +16,7 @@
     </div>
     <div class="card-body">
     <div class="card-body">
-        <form class="user" action="{{route('edit.pasien')}}" method = "post">
+      <form class="user" action="/pasien-update/{{ $pasien->id }}">
           @csrf
           @method('put')
         
@@ -45,19 +45,19 @@
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <select class="form-control " name="pendidikan_terakhir" placeholder="Pendidikan terakhir" value="{{ $pasien->pendidikan }}" required>
-                    <option value="" selected disabled>Pendidikan Terakhir</option>
-                    <option value="Tidak Ssekolah">Tidak Sekolah</option>
-                    <option value="SD">SD</option>
-                    <option value="SMP">SMP</option>
-                    <option value="SMA">SMA</option>
-                    <option value="Perguruan Tinggi">Perguruan Tinggi</option>
+                  <option value=""{{ $pasien->pendidikan == '' ? 'selected' : ''  }} disabled>Pendidikan Terakhir</option>
+                  <option value="Tidak Sekolah" {{ $pasien->pendidikan == 'Tidak Sekolah' ? 'selected' : ''  }}>Tidak Sekolah</option>
+                  <option value="SD" {{ $pasien->pendidikan == 'SD' ? 'selected' : '' }}>SD</option>
+                  <option value="SMP"{{ $pasien->pendidikan == 'SMP' ? 'selected' : '' }}>SMP</option>
+                  <option value="SMA" {{ $pasien->pendidikan == 'SMA' ? 'selected' : ''  }}>SMA</option>
+                  <option value="Perguruan Tinggi" {{ $pasien->pendidikan == 'Perguruan Tinggi' ? 'selected' : ''  }}>Perguruan Tinggi</option>
                 </select>    
               </div>
               <div class="col-sm-6">
                 <select class="form-control " name="jenis_kelamin" placeholder="Jenis Kelamin" value="{{ $pasien->jk }}" required>
-                    <option value="" selected disabled>Jenis Kelamin</option>
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="perempuan">Perempuan</option>
+                  <option value="" {{ $pasien->jk == '' ? 'selected' : '' }} disabled>Jenis Kelamin</option>
+                  <option value="Laki-laki"{{ $pasien->jk == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                  <option value="Perempuan"{{ $pasien->jk == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
 
                 </select>
               </div>
@@ -66,7 +66,7 @@
                     <input type="text" class="form-control " name="no_bpjs" value="{{ $pasien->no_bpjs }}" placeholder="Nomer BPJS (Tidak Wajib)">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control " name="alergi" value="{{ $pasien->alergi }}" placeholder="Daftar Alergi (Tidak Wajib)"></textarea>
+                    <textarea class="form-control " name="alergi" value="" placeholder="Daftar Alergi (Tidak Wajib)">{{ $pasien->alergi }}</textarea>
                 </div>                                
             <div class="form-group row justify-content-center">
                 <div class="card-footer">

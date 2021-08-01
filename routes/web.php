@@ -22,7 +22,9 @@ Route::get('pasien','PasienController@index');
 Route::get('/tambah-pasien', 'PasienController@tambah_pasien');
 Route::put('/pasien-db',['as' => 'pasien.simpan', 'uses' => 'PasienController@store']);
 Route::delete('/pasien-delete/{pasien}',['as' => 'pasien.delete', 'uses' => 'PasienController@destroy']);
-Route::get('/pasien/{pasien}',['as' => 'edit.pasien', 'uses' => 'PasienController@show']);
+Route::get('/pasien-edit/{id}', 'PasienController@edit');
+Route::put('/pasien-update/{id}', 'PasienController@update')->name('pasien.update');
+Route::get('/pasien-detail/{id}', 'PasienController@show');
 // Lab
 Route::get('/lab', 'LabController@index');
 Route::get('/tambah-lab', 'LabController@create'); 

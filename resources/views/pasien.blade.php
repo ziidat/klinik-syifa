@@ -32,10 +32,10 @@
         <td>{{ $pasien->tgl_lhr }}</td>
         <td>{{ $pasien->alamat }}</td>
         <td>{{ $pasien->hp }}</td>
-        <td><a href ="#" title="Lihat" class="btn btn-circle btn-primary">
+        <td><a href ="/pasien-detail/{{ $pasien->id }}" title="Lihat" class="btn btn-circle btn-primary">
           <i class="fas fa-file"></i>
         </a>
-        <a href ="pasien/{{ $pasien->id }}" title="Edit" class="btn btn-circle btn-warning">
+        <a href ="/pasien-edit/{{ $pasien->id }}" title="Edit" class="btn btn-circle btn-warning">
           <i class="fas fa-pen"></i>
         </a>
         <form action="{{route('pasien.delete',$pasien->id)}}" method="post" class="d-inline">
