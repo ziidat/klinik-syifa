@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('template') }}/plugins/date-time/css/dataTables.dateTime.min.css">
+  <!-- Boostrap 4 -->
+  <link rel="stylesheet" href="{{ asset('template') }}/dist/css/adminlte.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('template') }}/dist/css/adminlte.min.css">
 </head>
@@ -96,63 +98,39 @@
 <script src="{{ asset('template') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="{{ asset('template') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{ asset('template') }}/plugins/date-time/js/dataTables.dateTime.min.js"></script>
-
 <!-- Page specific script -->
-<script>
-//    var Datepicker;
-//   $.fn.dataTable.ext.search.push(
-//     function( settings, data, dataIndex ) {
-//         var min = Datepicker.val();
-//         var date = new Date( data[4] );
- 
-//         if (
-//             ( min === null ) ||
-//             ( min <= date  ) ||
-//         ) {
-//             return true;
-//         }
-//         return false;
-//     }
-// );
- 
-// $(document).ready(function() {
-//     // Create date inputs
-//     Datepicker = new DateTime($('#min'), {
-//         format: 'MMMM Do YYYY'
-//     });
-
-
-$(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-$(function() {
-    var Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
-$('.swalDefaultSuccess').click(function() {
-    Toast.fire({
-       icon: 'success',
-      title: 'Data Berhasil Di simpan'
-     })
-   });
-});
-</script>
 </body>
+<script>
+  $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  $(function() {
+      var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+  $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+         icon: 'success',
+        title: 'Data Berhasil Di simpan'
+       })
+     });
+  });
+  </script>
 @yield('chart')
 @yield('print')
 @yield('script')

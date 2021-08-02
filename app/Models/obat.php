@@ -9,4 +9,6 @@ class obat extends Model
 {
     use HasFactory;
     protected $table = 'obat';
+    protected $fillable = ['nama','jenis','dosis','satuan','stok','harga'];
+    public $primarykey = 'id';
 }

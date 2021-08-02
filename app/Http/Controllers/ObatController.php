@@ -14,7 +14,10 @@ class ObatController extends Controller
      */
     public function index()
     {
-        return view('obat');
+        // mengambil data obat
+        $obat = obat::all();
+
+        return view('obat',['obat'=> $obat]);
     }
 
     /**
@@ -22,7 +25,7 @@ class ObatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tambah_obat()
+    public function create()
     {
         return view('tambah-obat');
     }
@@ -35,7 +38,16 @@ class ObatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        obat::create([
+            'nama' => $request->nama,
+            'jenis' => $request->jenis,
+            'dosis' => $request->dosis,
+            'satuan' => $request->satuan,
+            'stok' => $request->stok,
+            'harga' => $request->harga,       
+        ]);
+        session()->flash('success', 'Data obat Berhasil di simpan');
+        return view('tambah-obat');
     }
 
     /**
@@ -57,7 +69,7 @@ class ObatController extends Controller
      */
     public function edit(obat $obat)
     {
-        //
+        return view('edit-obat',compact('obat'));
     }
 
     /**
@@ -69,7 +81,17 @@ class ObatController extends Controller
      */
     public function update(Request $request, obat $obat)
     {
-        //
+        obat::where('id',$request->id)->update([
+            'nama' => $request->nama,
+            'jenis' => $request->jenis,
+            'dosis' => $request->dosis,
+            'satuan' => $request->satuan,
+            'stok' => $request->stok,
+            'harga' => $request->harga,       
+        ]);
+
+        session()->flash('warning', 'Data obat Berhasil di Ubah');
+        return redirect('obat');
     }
 
     /**
@@ -80,7 +102,11 @@ class ObatController extends Controller
      */
     public function destroy(obat $obat)
     {
-        //
+        $deleteobat = obat::find($obat->id);
+        $deleteobat->delete();
+
+        session()->flash('destroy', 'Data obat Berhasil di hapus');
+        return redirect('obat');
     }
 
 }

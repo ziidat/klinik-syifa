@@ -9,4 +9,6 @@ class lab extends Model
 {
     use HasFactory;
     protected $table = 'lab';
+    protected $fillable = ['nama','satuan','nn','harga'];
+    public $primarykey = 'id';
 }

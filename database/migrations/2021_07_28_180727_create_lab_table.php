@@ -17,6 +17,7 @@ class CreateLabTable extends Migration
             $table->id('id');
             $table->string('nama');
             $table->string('satuan');
+            $table->string('nn');
             $table->integer('harga');
             $table->timestamps();
         });

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\lab;
-use App\Models\pasien;
 use Illuminate\Http\Request;
 
 class LabController extends Controller
@@ -15,7 +14,11 @@ class LabController extends Controller
      */
     public function index()
     {
-        return view('lab');
+        // mengambil data obat
+        $lab = lab::all();
+
+        return view('lab',['lab'=> $lab]);
+
     }
 
     /**
@@ -36,9 +39,15 @@ class LabController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        lab::create([
+            'nama' => $request->nama,
+            'satuan' => $request->satuan,
+            'nn' => $request->nn,
+            'harga' => $request->harga,       
+        ]);
+        session()->flash('success', 'Data lab Berhasil di simpan');
+        return view('tambah-lab');
     }
-
     /**
      * Display the specified resource.
      *
@@ -58,7 +67,7 @@ class LabController extends Controller
      */
     public function edit(lab $lab)
     {
-        //
+        return view('edit-lab',compact('lab'));
     }
 
     /**
@@ -70,7 +79,17 @@ class LabController extends Controller
      */
     public function update(Request $request, lab $lab)
     {
-        //
+        lab::where('id',$request->id)
+       ->update([
+        'nama' => $request->nama,
+        'satuan' => $request->satuan,
+        'nn' => $request->nn,
+        'harga' => $request->harga,
+       ]);
+
+       
+       session()->flash('warning', 'Data lab Berhasil di Ubah');
+        return redirect('lab');
     }
 
     /**
@@ -81,6 +100,10 @@ class LabController extends Controller
      */
     public function destroy(lab $lab)
     {
-        //
+        $deletelab = lab::find($lab->id);
+        $deletelab->delete();
+
+        session()->flash('destroy', 'Data lab Berhasil di hapus');
+        return redirect('lab');
     }
 }

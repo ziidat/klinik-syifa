@@ -3,12 +3,10 @@
 @section('title', 'Tambah Pasien')
 
 @section('container')
-@if (\Session::has('alert'))
-<div class="toasts-top-right fixed">
-        <ul>
-            <li>{!! \Session::get('alert') !!}</li>
-        </ul>
-    </div>
+@if(session()->has('success'))
+<div class="alert alert-success" role='alert'>
+  {{ session()->get('success') }}
+</div>
 @endif
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -75,7 +73,7 @@
                     </a>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-block swalDefaultSuccess">
+                    <button type="submit" class="btn btn-primary btn-block">
                         <i class="fas fa-save fa-fw"></i> Simpan
                     </button>
                 </div>     

@@ -62,7 +62,9 @@ class PasienController extends Controller
             'alergi' => $request ->alergi,
         ]);
 
-        return redirect('tambah-pasien')->with('succes','Data Berhasil di simpan');
+        session()->flash('success', 'Data Pasien Berhasil di simpan');
+
+        return redirect('tambah-pasien');
     }
 
     /**
@@ -71,9 +73,9 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function show(pasien $request)
+    public function show(pasien $pasien)
     {
-      return view('detail-pasien');  
+        //
     }
 
     /**
@@ -82,10 +84,9 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(pasien $pasien)
     {
-        $pasien = pasien::findOrFail($id);
-        return view('edit-pasien', ['pasien' => $pasien]); 
+        return view('edit-pasien',compact('pasien'));
     }
 
     /**
@@ -95,21 +96,25 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function update($id, pasien $request)
-    {
-        $pasien = pasien::find($id);
-        $pasien -> nama ; $request->nama_lengkap;
-        $pasien -> tgl_lhr ; $request->tanggal_lahir;
-        $pasien -> pekerjaan ; $request->pekerjaan;
-        $pasien -> jk ; $request->jenis_kelamin;
-        $pasien -> alamat ; $request->alamat;
-        $pasien -> hp ; $request->no_handphone;
-        $pasien -> pendidikan ; $request->pendidikan_terakhir;
-        $pasien -> no_bpjs ; $request->no_bpjs;
-        $pasien -> alergi ; $request->alergi;
-    $pasien->save();
-    
-    return redirect('/pasien');
+    public function update(Request $request, pasien $pasien)
+    {   
+       pasien::where('id',$request->id)
+       ->update([
+        'nama' => $request->nama_lengkap,
+        'tgl_lhr' => $request->tanggal_lahir,
+        'pekerjaan' => $request->pekerjaan,
+        'jk' => $request->jenis_kelamin,
+        'alamat' => $request->alamat,
+        'hp' => $request->no_handphone,
+        'pendidikan' => $request->pendidikan_terakhir,
+        'no_bpjs' => $request->no_bpjs,
+        'alergi' => $request ->alergi,
+       ]);
+
+       
+       session()->flash('success', 'Data Pasien Berhasil di Ubah');
+        return redirect('pasien');
+
     }
 
     /**
@@ -120,9 +125,11 @@ class PasienController extends Controller
      */
     public function destroy(pasien $pasien)
     {
-        $deleteUser = pasien::find($pasien->id);
-        $deleteUser->delete();
-        return redirect('pasien')->with('alert', 'User Berhasil Dihapus');
+        $pasien = pasien::find($pasien->id);
+        $pasien->delete();
+
+        session()->flash('destroy', 'Data Pasien Berhasil di hapus');
+        return redirect('pasien');
     }
 
 }

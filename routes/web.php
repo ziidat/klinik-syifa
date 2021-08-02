@@ -1,5 +1,6 @@
 <?php
 use app\Http\Controllers;
+use App\Http\Controllers\LabController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,16 +23,21 @@ Route::get('pasien','PasienController@index');
 Route::get('/tambah-pasien', 'PasienController@tambah_pasien');
 Route::put('/pasien-db',['as' => 'pasien.simpan', 'uses' => 'PasienController@store']);
 Route::delete('/pasien-delete/{pasien}',['as' => 'pasien.delete', 'uses' => 'PasienController@destroy']);
-Route::get('/pasien-edit/{id}', 'PasienController@edit');
-Route::put('/pasien-update/{id}', 'PasienController@update')->name('pasien.update');
-Route::get('/pasien-detail/{id}', 'PasienController@show');
+Route::get('edit-pasien/{pasien}',['as' => 'pasien.edit', 'uses' => 'PasienController@edit']);
+Route::put('update-pasien',['as' => 'pasien.update', 'uses' => 'PasienController@update']);
+Route::get('detail-pasien/{pasien}','PasienController@show');
 // Lab
-Route::get('/lab', 'LabController@index');
-Route::get('/tambah-lab', 'LabController@create'); 
+// Route::get('/lab', 'LabController@index');
+// Route::get('/tambah-lab', 'LabController@create'); 
+// Route::get('/simpan-lab', 'LabController@store'); 
+// Route::get('/edit-lab', 'LabController@edit'); 
+// Route::get('/update-lab', 'LabController@update');
+Route::resource('lab','LabController'); 
+Route::resource('obat','ObatController'); 
 
 //Obat
-Route::get('/obat', 'ObatController@index');
-Route::get('/tambah-obat', 'ObatController@tambah_obat');
+// Route::get('/obat', 'ObatController@index');
+// Route::get('/tambah-obat', 'ObatController@tambah_obat');
 
 //RM
 Route::get('/rm', 'RMController@index');
