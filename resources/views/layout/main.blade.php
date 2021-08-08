@@ -17,10 +17,6 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-  <link rel="stylesheet" href="{{ asset('template') }}/plugins/date-time/css/dataTables.dateTime.min.css">
-  <!-- Boostrap 4 -->
-  <link rel="stylesheet" href="{{ asset('template') }}/dist/css/adminlte.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('template') }}/dist/css/adminlte.min.css">
 </head>
@@ -50,7 +46,7 @@
   <!-- Main content -->
   <section class="content">
 
-
+  @include('layout.alert')
   @yield('container')
 
     </section>
@@ -77,8 +73,6 @@
 <script src="{{ asset('template') }}/plugins/jquery/jquery.min.js"></script>
 <!-- ChartJS -->
 <script src="{{ asset('template') }}/plugins/chart.js/Chart.min.js"></script>
-<!-- SweetAlert2 -->
-<script src="{{ asset('template') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('template') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
@@ -92,12 +86,6 @@
 <script src="{{ asset('template') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="{{ asset('template') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="{{ asset('template') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="{{ asset('template') }}/plugins/jszip/jszip.min.js"></script>
-<script src="{{ asset('template') }}/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="{{ asset('template') }}/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="{{ asset('template') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="{{ asset('template') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="{{ asset('template') }}/plugins/date-time/js/dataTables.dateTime.min.js"></script>
 <!-- Page specific script -->
 </body>
 <script>
@@ -116,20 +104,6 @@
         "responsive": true,
       });
     });
-  $(function() {
-      var Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000
-      });
-  $('.swalDefaultSuccess').click(function() {
-      Toast.fire({
-         icon: 'success',
-        title: 'Data Berhasil Di simpan'
-       })
-     });
-  });
   </script>
 @yield('chart')
 @yield('print')

@@ -15,6 +15,7 @@ class CreateRmTable extends Migration
     {
         Schema::create('rm', function (Blueprint $table) {
             $table->id('id');
+            $table->id('idpasien');
             $table->string('keluhan');
             $table->text('anamnesis');
             $table->text('cekfisik');
@@ -24,7 +25,7 @@ class CreateRmTable extends Migration
             $table->text('resep');
             $table->text('jumlah');
             $table->text('aturan');
-            $table->integer('dokter_id');
+            $table->integer('dokter');
             $table->timestamps();
         });
     }

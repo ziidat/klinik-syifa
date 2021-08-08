@@ -12,54 +12,30 @@
       <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
+          <th>ID</th>
+          <th>Nama Pasien</th>
+          <th>Jenis Kelamin</th>
+          <th>HP</th>
           <th>Aksi</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Trident</td>
-          <td>Internet
-            Explorer 4.0
-          </td>
-          <td>Win 95+</td>
-          <td> 4</td>
+          @foreach ($pasiens as $pasien)
+          <tr>
+            <td>{{ $pasien->id }}</td>
+            <td>{{ $pasien->nama }}</td>
+            <td>{{ $pasien->jk }}</td>
+            <td>{{ $pasien->hp }}</td>
           <td width="120px">
-            <a href="/tambah-rm" class="btn btn-primary btn-sm btn-icon-split">
+            <a href="{{ route('tambah.rm',$pasien->id) }}" class="btn btn-circle btn-primary">
             <span class="icon text-white-50">
             <i style="padding-top:4px"class="fas fa-check"></i>
             </span>
-            <span class="text">Pilih</span></td>
+            <span class="text"></span></td>
+          </a>
         </tr>
-        <tr>
-          <td>Trident</td>
-          <td>Internet
-            Explorer 5.0
-          </td>
-          <td>Win 95+</td>
-          <td>5</td>
-          <td>Pilih</td>
-        </tr>
-        <tr>
-          <td>Trident</td>
-          <td>Internet
-            Explorer 5.5
-          </td>
-          <td>Win 95+</td>
-          <td>5.5</td>
-          <td>Pilih</td>
-        <tfoot>
-        <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
-          <th>Aksi</th>
-        </tr>
-        </tfoot>
+        @endforeach
+      </tbody>
       </table>
     </div>
     <!-- /.card-body -->

@@ -1,17 +1,8 @@
 @extends('layout/main')
 
-@section('title', 'Lab')
+@section('title', 'Data Lab')
 
 @section('container')
-@if(session()->has('warning'))
-  <div class="alert alert-warning" role='alert'>
-    {{ session()->get('warning') }}
-  </div>
-  @elseif (session()->has('destroy'))
-  <div class="alert alert-danger" role='alert'>
-    {{ session()->get('destroy') }}
-  </div>
-  @endif
 <div class="card shadow mb-4">
     <div class="card-header d-sm-flex align-items-center justify-content-between py-3">               
         <a href="lab/create" class=" btn btn-info btn-sm shadow-sm">
@@ -37,7 +28,7 @@
           <td>{{ $lab->nn }}</td>
           <td>{{ $lab->harga}}</td>
           <td>
-          <a href ="{{ route('lab.edit',$lab->id) }}" title="Edit" class="btn btn-circle btn-warning">
+          <a href ="{{ route('lab.edit',$lab->id) }}" title="Edit" class="btn btn-sm btn-circle btn-warning">
             <i class="fas fa-pen"></i>
           </a>
           <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$lab->id}})" data-target="#modal-sm" class="btn btn-sm btn-icon-split btn-danger">
@@ -51,36 +42,6 @@
     <!-- /.card-body -->
   </div>
   <!-- /.card -->
-  
-  <!-- /.modal -->
-
-<!-- .modal-content -->
-    <div class="modal fade" id="modal-sm">
-      <div class="modal-dialog modal-sm">
-        <form action="" id="deleteForm" method="post">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Hapus Data Lab</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            {{ csrf_field() }}
-                 {{ method_field('DELETE') }}
-            <p>Apakah Anda Yakin untuk menghapus Data Lab?</p>
-          </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">tutup</button>
-            <button type="button" name="" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">Yakin</button>
-          </div>
-        </div>
-        <!-- /.modal-content -->
-      </form>
-      </div>
-      <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
 
 @endsection
 

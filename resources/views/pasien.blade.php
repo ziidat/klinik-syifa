@@ -3,22 +3,16 @@
 @section('title', 'Data Pasien')
 
 @section('container')
-@if(session()->has('success'))
-  <div class="alert alert-warning" role='alert'>
-    {{ session()->get('success') }}
-  </div>
-  @endif
 <div class="card shadow mb-4">
-  
         <div class="card-header d-sm-flex align-items-center justify-content-between py-3">               
-            <a href="/tambah-pasien" class=" btn btn-info btn-sm shadow-sm">
+            <a href="{{ route('pasien.create') }}" class=" btn btn-info btn-sm shadow-sm">
             <i class="fas fa-plus fa-sm"></i> Tambah Pasien</a> 
         </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <table id="example1" class="table table-bordered">
+    <table id="example1" class="table table-bordered table-striped">
       <thead>
-        <tr>
+      <tr>
           <th>Id Pasien</th>
           <th>Nama</th>
           <th>Jenis Kelamin</th>
@@ -34,22 +28,19 @@
             <td>{{ $pasien->id }}</td>
             <td>{{ $pasien->nama }}</td>
             <td>{{ $pasien->jk }}</td>
-            <td>{{ $pasien->tgl_lhr }}</td>
+            <td>{{ hitung_usia($pasien->tgl_lhr) }}</td>
             <td>{{ $pasien->alamat }}</td>
             <td>{{ $pasien->hp }}</td>
             <td>
-              <a href ="#" title="Lihat" class="btn btn-circle btn-primary">
+              <a href ="#" title="Lihat" class="btn btn-sm btn-icon-split btn-primary">
                   <i class="fas fa-file"></i></a>
-              <a href ="edit-pasien/{{ $pasien->id }}" title="Edit" class="btn btn-circle btn-warning">
+              <a href ="{{ route('pasien.edit',$pasien->id) }}" title="Edit" class="btn btn-sm btn-icon-split btn-warning">
                   <i class="fas fa-pen"></i></a>
-              <form action="{{route('pasien.delete',$pasien->id)}}" method="post" class="d-inline">
-                  @method('delete')
-                  @csrf
-                  <button type="submit" class="btn btn-danger btn-sm btn-icon " data-toggle="modal" data-target="#modal-danger" value="Delete"><i class="fa fa-trash"></i></button>
-              </form>
-            </td>
-          </tr>
-        @endforeach
+                  <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$pasien->id}})" data-target="#modal-sm" class="btn btn-sm btn-icon-split btn-danger">
+                    <span class="icon"><i class="fa  fa-trash" style="padding-top: 4px;"></i></span><span class="text"></span></a>
+                </td>
+              </tr>
+            @endforeach
       </tbody>
     </table>
   </div>
@@ -59,22 +50,18 @@
 
 @endsection
 @section('script')
-<script>
-$(function() {
-    var Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
-$('.toastsDefaultDanger').click(function() {
-  $(document).Toasts('create', {
-    class: 'bg-danger',
-    title: 'Toast Title',
-    subtitle: 'Subtitle',
-    body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-  })
-});
-})
+<script type="text/javascript">
+  function deleteData(id)
+  {
+      var id = id;
+      var url = '{{ route("pasien.destroy", ":id") }}';
+      url = url.replace(':id', id);
+      $("#deleteForm").attr('action', url);
+  }
+
+  function formSubmit()
+  {
+      $("#deleteForm").submit();
+  }
 </script>
 @endsection

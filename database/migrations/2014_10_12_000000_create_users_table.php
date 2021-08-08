@@ -20,8 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('profesi');
-            $table->boolean('level');
+            $table->boolean('admin');
             $table->rememberToken();
+            $table->string('avatar');    
             $table->timestamps();
         });
     }

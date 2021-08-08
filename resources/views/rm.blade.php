@@ -3,9 +3,10 @@
 @section('title', 'Rekam Medis')
 
 @section('container')
+@include('layout.alert')
 <div class="card shadow mb-4">
     <div class="card-header d-sm-flex align-items-center justify-content-between py-3">               
-        <a href="/tambah-rm-pilih" class=" btn btn-info btn-sm shadow-sm">
+        <a href="{{ route('rm.create') }}" class=" btn btn-info btn-sm shadow-sm">
         <i class="fas fa-plus fa-sm"></i> Tambah RM</a> 
     </div>
   <!-- /.card-header -->

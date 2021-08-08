@@ -12,6 +12,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('template') }}/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="{{ asset('template') }}/dist/css/login.css">
 
 <body>
@@ -38,11 +39,7 @@
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
-			</div>
+			
 			<div class="overlay-panel overlay-right" style=
             "background: url('{{ asset('img') }}/bglogin.png')" >
 			</div>

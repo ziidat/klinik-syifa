@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
     <div class="card-body">
-        <form class="user" action="{{ route('pasien.update') }}" method = "post">
+        <form class="user" action="{{ route('pasien.update',$pasien->id) }}" method = "post">
           @csrf
           @method('put')
           <input type="hidden" name="id" value="{{ $pasien->id }}">

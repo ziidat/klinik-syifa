@@ -28,7 +28,7 @@ class PasienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tambah_pasien()
+    public function create()
     {
         return view('tambah-pasien');
     }
@@ -131,5 +131,6 @@ class PasienController extends Controller
         session()->flash('destroy', 'Data Pasien Berhasil di hapus');
         return redirect('pasien');
     }
+    
 
 }

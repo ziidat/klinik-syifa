@@ -3,21 +3,14 @@
 @section('title', 'Tambah Pasien')
 
 @section('container')
-@if(session()->has('success'))
-<div class="alert alert-success" role='alert'>
-  {{ session()->get('success') }}
-</div>
-@endif
 <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="card-tittle">Formulir Pasien Baru</h6>
     </div>
     <div class="card-body">
     <div class="card-body">
-        <form class="user" action="{{route('pasien.simpan')}}" method = "post">
+        <form class="user" action="{{route('pasien.store')}}" method = "post">
           @csrf
-          @method('put')
-        
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="text" class="form-control " name="nama_lengkap" placeholder="Nama Lengkap" required>

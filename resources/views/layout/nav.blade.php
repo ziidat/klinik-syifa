@@ -57,8 +57,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
-      <img src="img/logo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .9">
+    <a href="{{ route('index') }}" class="brand-link">
+      <img src="{{ asset('img') }}/logo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .9">
       <span class="brand-text font-weight-light">Klinik Syifa Medikana</span>
     </a>
 
@@ -73,38 +73,38 @@
                with font-awesome or any other icon font library -->
           <li class="nav-header">MENU UTAMA</li>
             <li class="nav-item">
-              <a href="/" class="nav-link">
+              <a href="{{ route('index') }}" class="nav-link">
                 <i class="nav-icon fas fa-chart-line"></i>
                 <p>Dashboard</p>
               </a>
             </li>     
             <li class="nav-item">
-              <a href="/pasien" class="nav-link">
+              <a href="{{ route('pasien.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-user-injured"></i>
                 <p>Pasien</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/rm" class="nav-link">
+              <a href="{{ route('rm.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-book-medical"></i>
                 <p>Rekam Medis</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/obat" class="nav-link">
+              <a href="{{ route('obat.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-capsules"></i>
                 <p>Obat</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/lab" class="nav-link">
+              <a href="{{ route('lab.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-flask"></i>
                 <p>Lab</p>
               </a>
             </li>
           <li class="nav-header">PENGATURAN</li>
           <li class="nav-item">
-            <a href="/user" class="nav-link">
+            <a href="{{ route('user.index') }}" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>Pengaturan Pengguna</p>
             </a>
