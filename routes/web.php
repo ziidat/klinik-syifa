@@ -49,15 +49,10 @@ Route::get('tambah-rm/{id}', ['as' => 'tambah.rm', 'uses' => 'RMController@tamba
 // Route::get('/tambah-rm-pilih', 'RMController@PilihPasien');
 // Route::get('/tambah-rm', 'RMController@tambah_rm');
 
-// auth
-
-Route::get('/login', function () {
-    return view('auth.login');
-});
 Route::get('/user', ['as' => 'user.index', 'uses' => 'UserController@index']);
-Route::get('/register', function () {
-    return view('auth.register');
-});
+Route::get('/register', ['as' => 'register', 'uses' => 'RegistrationController@create']);
+Route::post('/register', ['as' => 'register', 'uses' => 'RegistrationController@register']);
+Route::get('/login', ['as' => 'login', 'uses' => 'LoginController@create']);
 
 
 // report

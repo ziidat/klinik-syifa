@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RMController extends Controller
 {
@@ -20,9 +22,9 @@ class RMController extends Controller
      */
     public function index()
     {
-        $rm = rm::all();
+        $rms = rm::all();
 
-        return view('rm',['rm'=> $rm]);
+        return view('rm',compact('rms'));
     }
 
     /**
@@ -162,9 +164,49 @@ class RMController extends Controller
      * @param  \App\Models\rm  $rm
      * @return \Illuminate\Http\Response
      */
-    public function edit(rm $rm)
+    public function edit_rm($id)
     {
-        return view('edit-rm',compact('rm'));
+        if (Auth::User()->admin !== 1) {
+            if (Auth::User()->profesi !== "Dokter") {
+                abort(403, 'Anda Tidak berhak Mengakses Halaman Ini.');
+            }
+            $dokters=DB::table('rm')->select('dokter')->where('id',$id)->get();;
+            foreach ($dokters as $dokter) {            
+                if (Auth::User()->id !== $dokter->dokter) {
+                abort(403, 'Anda Tidak berhak Mengakses Halaman Ini.');
+                }
+            }
+        }
+        
+        $datas= rm::find('rm',$id);
+        if ($datas->count() <= 0) {
+            return abort(404, 'Halaman Tidak Ditemukan.');
+        }
+        foreach ($datas as $data) {
+            //mencari id pasien dari id RM
+             if ($data->idpasien != NULL) {$idpasien = $data->idpasien;  $idens=DB::table('pasien')->where('id',$idpasien)->get();}
+             if ($data->lab != NULL) {
+                //mengcovert data lab di tabel RM kedalam arry
+                $data->labhasil=array_combine(encode($data->lab),encode($data->hasil));
+                $num['lab']=sizeof($data->labhasil);
+             }
+             else {
+                $num['lab']=0;
+             }
+             if ($data->resep != NULL) {
+                $data->allresep=array_combine(encode($data->resep),encode($data->aturan));
+                $data->jum=encode($data->jumlah);
+                $num['resep']=sizeof($data->allresep);
+             }
+             else {
+                $num['resep']=0;
+             }
+        }
+        $dokters = user::where('profesi','Dokter')->get();
+        $labs = lab::all();
+        $obats = obat::all();
+       
+      return view('edit-rm',compact('metadatas','idens','datas','labs','obats','num','dokters'));
     }
 
     /**
@@ -174,7 +216,7 @@ class RMController extends Controller
      * @param  \App\Models\rm  $rm
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rm $rm)
+    public function update(Request $request)
     {
         rm::where('id',$request->id)->update([
             'nama' => $request->nama,

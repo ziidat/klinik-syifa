@@ -6,8 +6,8 @@
         <h6 class="card-tittle">Formulir User Baru</h6>
     </div>
 <div class="card-body">
-    <form method="POST" action="#" enctype="multipart/form-data">
-        {{-- @csrf --}}
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+        @csrf
 
         <div class="form-group row">
             <label for="name" class="col-md-4 col-form-label text-md-right">Nama</label>

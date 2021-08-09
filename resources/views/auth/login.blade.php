@@ -20,7 +20,7 @@
 <div class="container fade-in-form" id="container">
 	
 	<div class="form-container sign-in-container">
-		<form name="form" method="get" action="/">
+		<form action={{ route'login' }} method="get" action="/">
 		<?php
           if(isset($_GET['pesan']) && ($_GET['pesan']== "gagal")){
             echo "<p><font color='red'>Email atau Password Salah!!!</font></p><hr>";
