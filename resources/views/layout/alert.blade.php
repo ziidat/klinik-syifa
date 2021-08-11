@@ -1,13 +1,13 @@
 @if(session()->has('warning'))
-  <div class="col-sm-2 ml-1 alert alert-default-warning row justify-content-center" role='alert'>
+  <div class="col-sm-3 ml-1 alert alert-default-warning row justify-content-center" role='alert'>
     {{ session()->get('warning') }}
   </div>
   @elseif (session()->has('destroy'))
-  <div class="col-sm-2 ml-1 alert alert-default-danger row justify-content-center" role='alert'>
+  <div class="col-sm-3 ml-1 alert alert-default-danger row justify-content-center" role='alert'>
     {{ session()->get('destroy') }}
   </div>
   @elseif (session()->has('success'))
-  <div class="col-sm-2 ml-1 alert alert-default-success row justify-content-center" role='alert'>
+  <div class="col-sm-3 ml-1 alert alert-default-success row justify-content-center" role='alert'>
     {{ session()->get('success') }}
   </div>
   @endif

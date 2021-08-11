@@ -4,17 +4,18 @@
 
 @section('container')
 <div class="card shadow mb-4">
-    <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
-        <h6 class="m-0 font-weight-bold text-dark">Pilih Pasien</h6>
-    </div>
-    <!-- /.card-header -->
+    <!-- Card Header - Accordion -->
+    <a href="#PilihPasien" class="d-block card-header py-3 {{$cont['col']}}" data-toggle="collapse" role="button" aria-expanded="{{$cont['aria']}}" aria-controls="PilihPasien">
+      <h6 class="m-0 font-weight-bold text-primary">Pilih pasien</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <div class="collapse {{$cont['show']}}" id="PilihPasien" style="">
     <div class="card-body">
       <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
           <th>ID</th>
           <th>Nama Pasien</th>
-          <th>Jenis Kelamin</th>
           <th>HP</th>
           <th>Aksi</th>
         </tr>
@@ -24,7 +25,6 @@
           <tr>
             <td>{{ $pasien->id }}</td>
             <td>{{ $pasien->nama }}</td>
-            <td>{{ $pasien->jk }}</td>
             <td>{{ $pasien->hp }}</td>
           <td width="120px">
             <a href="{{ route('tambah.rm',$pasien->id) }}" class="btn btn-circle btn-primary">

@@ -1,6 +1,9 @@
 @extends('layout.main')
 @section('title','Lihat RM')
 @section('container')
+<div class="wrapper">
+  <!-- Main content -->
+  <section class="invoice">
 @include('report.report-rm')
    <!-- this row will not appear when printing -->
    <div class="form-group row">

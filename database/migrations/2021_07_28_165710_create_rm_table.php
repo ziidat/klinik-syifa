@@ -15,7 +15,7 @@ class CreateRmTable extends Migration
     {
         Schema::create('rm', function (Blueprint $table) {
             $table->id('id');
-            $table->id('idpasien');
+            $table->integer('idpasien');
             $table->string('keluhan');
             $table->text('anamnesis');
             $table->text('cekfisik');

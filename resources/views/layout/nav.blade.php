@@ -31,23 +31,31 @@
       </li>
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img src="{{ asset('template') }}/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
-          <span class="color=white d-none d-md-inline">Alexander Pierce</span>
+          <img src="{{ asset('template') }}/dist/img/{{ Auth::user()->avatar }}" class="user-image img-circle elevation-2" alt="User Image">
+          <span class="color=white d-none d-md-inline">{{ Auth::user()->name }}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-olive">
-            <img src="{{ asset('template') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('template') }}/dist/img/{{ Auth::user()->avatar }}" class="img-circle elevation-2" alt="User Image">
 
             <p>
-              Alexander Pierce - Web Developer
-              <small>Member since Nov. 2012</small>
+              {{ Auth::user()->name }}
+              <small>{{ Auth::user()->profesi }}</small>
             </p>
           </li>
           <!-- Menu Footer-->
           <li class="user-footer">
             <a href="#" class="btn btn-default btn-flat">Profile</a>
-            <a href="/login" class="btn btn-default btn-flat float-right">Sign out</a>
+            <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
           </li>
         </ul>
       </li>

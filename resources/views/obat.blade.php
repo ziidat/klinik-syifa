@@ -29,7 +29,7 @@
             <td>{{ $obat->dosis }}
             {{ $obat->satuan }} </td>
             <td>{{ $obat->stok }}</td>
-            <td>{{ $obat->harga }}</td>
+            <td>{{ formatrupiah($obat->harga) }}</td>
             <td>
               <a href ="{{ route('obat.edit',$obat->id) }}" title="Edit" class="btn btn-sm btn-circle btn-warning">
                   <i class="fas fa-pen"></i></a>

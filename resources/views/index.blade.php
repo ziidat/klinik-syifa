@@ -12,14 +12,14 @@
         <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>150</h3>
+            <h3>{{$jumlah['pasien']}}</h3>
 
             <h5>Total Pasien Terdaftar</h5>
           </div>
           <div class="icon">
             <i class="fas fa-user-friends"></i>
           </div>
-          <a href="{{url('pasien')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{route('pasien.index')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -27,14 +27,14 @@
         <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>53</h3>
+            <h3>{{$jumlah['kunjungan']}}</h3>
 
-            <h5>Pengunjung Hari ini</h5>
+            <h5>Total Pengunjung</h5>
           </div>
           <div class="icon">
             <i class="fas fa-head-side-virus"></i>
           </div>
-          <a href="/rm" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{route('rm.index')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -42,14 +42,14 @@
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3>44</h3>
+            <h3>{{$jumlah['obat']}}</h3>
 
             <h5>Total Obat</h5>
           </div>
           <div class="icon">
             <i class="nav-icon fas fa-capsules"></i>
           </div>
-          <a href="/obat" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{route('obat.index')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -57,14 +57,14 @@
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3>65</h3>
+            <h3>{{$jumlah['lab']}}</h3>
 
             <h5>Total Lab</h5>
           </div>
           <div class="icon">
             <i class="nav-icon fas fa-flask"></i>
           </div>
-          <a href="lab" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{route('lab.index')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -73,7 +73,7 @@
     <!-- AREA CHART -->
     <div class="card card-olive">
       <div class="card-header">
-        <h3 class="card-title">Area Chart</h3>
+        <h3 class="card-title">Grafik Pengunjung Klinik</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse">

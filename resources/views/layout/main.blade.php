@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('template') }}/dist/css/adminlte.min.css">
+  {{-- <link rel="stylesheet" href="{{ asset('template') }}/dist/css/bootstrap.min.css"> --}}
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -55,10 +56,7 @@
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> Laravel 8 | AdminLTE 3.1.0
-    </div>
-    <strong>Copyright &copy; 2021 <a href="#">Klinik Syifa Medikana</a>.</strong> All rights reserved.
+    <a class="mt-5 mb-3 text-muted justify-content-center">&copy; Klinik Syifa Medikana 2021</a>
   </footer>
 
   <!-- Control Sidebar -->
@@ -77,6 +75,7 @@
 <script src="{{ asset('template') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('template') }}/dist/js/adminlte.min.js"></script>
+<script src="{{ asset('template') }}/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{ asset('template') }}/dist/js/demo.js"></script> --}}
 <!-- DataTables  & Plugins -->

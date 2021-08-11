@@ -1,6 +1,8 @@
 <?php
 use app\Http\Controllers;
 use App\Http\Controllers\LabController;
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,62 +15,89 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login', function () {
-    return view('auth.login');
-});
-Route::get('/',['as' => 'index', 'uses' => 'DashboardController@index']);
 
-// Pasien
-Route::resource('pasien','PasienController');
-// Route::get('pasien','PasienController@index');
-// Route::get('/tambah-pasien', 'PasienController@tambah_pasien');
-// Route::put('/pasien-db',['as' => 'pasien.simpan', 'uses' => 'PasienController@store']);
-// Route::delete('/pasien-delete/{pasien}',['as' => 'pasien.delete', 'uses' => 'PasienController@destroy']);
-// Route::get('edit-pasien/{pasien}',['as' => 'pasien.edit', 'uses' => 'PasienController@edit']);
-// Route::put('update-pasien',['as' => 'pasien.update', 'uses' => 'PasienController@update']);
-// Route::get('detail-pasien/{pasien}','PasienController@show');
+//Route Group
+Route::group(['middleware'=> 'auth'],function(){
+    Route::get('/',['as' => 'index', 'uses' => 'DashboardController@index']);
 
-// Lab
-Route::resource('lab','LabController'); 
-// Route::get('/lab', 'LabController@index');
-// Route::get('/tambah-lab', 'LabController@create'); 
-// Route::get('/simpan-lab', 'LabController@store'); 
-// Route::get('/edit-lab', 'LabController@edit'); 
-// Route::get('/update-lab', 'LabController@update');
+    // Pasien
+    Route::resource('pasien','PasienController');
 
-//Obat
-Route::resource('obat','ObatController'); 
-// Route::get('/obat', 'ObatController@index');
-// Route::get('/tambah-obat', 'ObatController@tambah_obat');
+    // Lab
+    Route::resource('lab','LabController');
 
-//RM
-Route::resource('rm','RMController');
-Route::get('rm/pilih-pasien',['as' => 'pilih.rm', 'uses' => 'RMController@pilihrm']);
-Route::get('tambah-rm/{id}', ['as' => 'tambah.rm', 'uses' => 'RMController@tambah_rmid']);
-// Route::get('/rm', 'RMController@index');
-// Route::get('/tambah-rm-pilih', 'RMController@PilihPasien');
-// Route::get('/tambah-rm', 'RMController@tambah_rm');
+    //Obat
+    Route::resource('obat','ObatController');
 
-Route::get('/user', ['as' => 'user.index', 'uses' => 'UserController@index']);
-Route::get('/register', ['as' => 'register', 'uses' => 'RegistrationController@create']);
-Route::post('/register', ['as' => 'register', 'uses' => 'RegistrationController@register']);
+    //RM
+    Route::resource('rm','RMController');
+    Route::get('rm/pilih-pasien',['as' => 'pilih.rm', 'uses' => 'RMController@pilihrm']);
+    Route::get('rm/create/{id}', ['as' => 'tambah.rm', 'uses' => 'RMController@tambah_rmid']);
+    Route::get('/lihatrm/{id}', ['as' => 'lihat.rm', 'uses' => 'RMController@lihatrm']);
+    Route::get('/rm/list/{idpasien}',['as'=> 'rm.list','uses'=>'RMController@list_rm']);
+    Route::get('/rm/edit/{id}', ['as'=> 'rm.edit','uses'=>'RMController@edit_rm']);
+    Route::get('/rm/lihat/{id}', ['as'=> 'rm.lihat','uses'=>'RMController@lihat_rm']);
+  });
+
+// Route::group(['middleware'=> 'auth','admin'],function(){
+Route::get('/user', ['as' => 'user.index', 'uses' => 'UserController@index'])->middleware('auth','admin');;
+Route::get('/register', ['as' => 'register', 'uses' => 'RegistrationController@create'])->middleware('auth','admin');;
+Route::post('/register', ['as' => 'register', 'uses' => 'RegistrationController@register'])->middleware('auth','admin');;
+// });
 Route::get('/login', ['as' => 'login', 'uses' => 'LoginController@create']);
 
-
 // report
-
-Route::get('/lihattagihan', function () {
-    return view('lihat-tagihan');
-});
-
-Route::get('/cetaktagihan', function () {
-    return view('cetak-tagihan');
-});
-
-Route::get('/cetakrm', function () {
-    return view('cetak-rm');
-});
-
 Route::get('/lihatrm', function () {
-    return view('lihat-rm');
-});
+  return view('lihat-rm');
+  }
+);
+Route::get('/cetakrm', function () {
+  return view('cetak-rm');
+  }
+);
+Route::get('/lihattagihan', function () {
+  return view('lihat-tagihan');
+  }
+);
+Route::get('/cetaktagihan', function () {
+  return view('cetak-tagihan');
+  }
+);
+
+//Tagihan
+Route::get('/tagihan/{id}', 'RMController@tagihan')->name('tagihan')->middleware('auth');
+//Endtagihan
+
+//Tagihan
+Route::get('/pengaturan', 'PengaturanController@index')->name('pengaturan')->middleware('auth','admin');
+
+Route::patch('/pengaturan/simpan', 'PengaturanController@simpan')->name('pengaturan.simpan')->middleware('auth','admin');
+//Endtagihan
+
+//Profile
+Auth::routes([
+  'register' => true,
+  'verify' => false,
+  'reset' => false
+]);
+
+Route::group(['prefix' => 'users'], function(){
+    Route::auth();
+    });
+
+Route::get('users/profile', 'ProfileController@index')->name('profile.edit')->middleware('auth');
+
+Route::get('users/profile/{id}', 'ProfileController@edit')->name('profile.edit.admin')->middleware('auth','admin');
+
+Route::patch('users/profile/simpan', 'ProfileController@simpan')->name('profile.simpan')->middleware('auth');
+//endProfile
+
+//Users
+Route::get('/users', 'UserController@index')->name('user')->middleware('auth','admin');
+
+Route::delete('/users/delete/{id}', 'UserController@hapus')->name('user.destroy')->middleware('auth','admin');
+
+
+//endUsers
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

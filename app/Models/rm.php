@@ -10,7 +10,6 @@ class rm extends Model
     use HasFactory;
     protected $table = 'rm';
     protected $fillable = [
-        'id_pasien',
         'keluhan',
         'anamnesis',
         'cekfisik',
@@ -20,6 +19,6 @@ class rm extends Model
         'resep',
         'jumlah',
         'aturan',
-        'dokter_id'];
+        'dokter'];
     public $primarykey = 'id';
 }

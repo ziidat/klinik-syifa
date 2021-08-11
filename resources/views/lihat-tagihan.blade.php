@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title','Lihat RM')
+@section('title','Lihat Tagihan')
 @section('container')
 @include('report.report-tagihan')
    <!-- this row will not appear when printing -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\pasien;
+use App\Models\rm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -41,14 +42,15 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'nama_lengkap' => 'required|min:5|max:35',
+        // $request->validate([
+        //     'nama_lengkap' => ['required','min:5','max:35'],
         //     'tanggal_lahir' => 'required|before:today',
         //     'alamat' => 'required',
         //     'pekerjaan' => 'required',
         //     'no_handphone' => 'required|numeric',
         //     'jenis_kelamin' => 'required',
-        //     'no_bpjs' => 'nullable|numeric|digits_between:1,15'
+        //     'no_bpjs' => 'nullable|numeric|digits_between:1,15',
+        //     'alergi' => 'nullable'
         // ]);
         pasien::create([
             'nama' => $request->nama_lengkap,
@@ -64,7 +66,7 @@ class PasienController extends Controller
 
         session()->flash('success', 'Data Pasien Berhasil di simpan');
 
-        return redirect('tambah-pasien');
+        return view('tambah-pasien');
     }
 
     /**
@@ -73,7 +75,7 @@ class PasienController extends Controller
      * @param  \App\Models\pasien  $pasien
      * @return \Illuminate\Http\Response
      */
-    public function show(pasien $pasien)
+    public function show(pasien $id)
     {
         //
     }
@@ -112,7 +114,7 @@ class PasienController extends Controller
        ]);
 
        
-       session()->flash('success', 'Data Pasien Berhasil di Ubah');
+       session()->flash('warning', 'Data Pasien Berhasil di Ubah');
         return redirect('pasien');
 
     }

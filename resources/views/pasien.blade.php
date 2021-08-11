@@ -32,7 +32,7 @@
             <td>{{ $pasien->alamat }}</td>
             <td>{{ $pasien->hp }}</td>
             <td>
-              <a href ="#" title="Lihat" class="btn btn-sm btn-icon-split btn-primary">
+              <a href ="{{route('rm.list', $pasien->id) }}" title="Lihat" class="btn btn-sm btn-icon-split btn-primary">
                   <i class="fas fa-file"></i></a>
               <a href ="{{ route('pasien.edit',$pasien->id) }}" title="Edit" class="btn btn-sm btn-icon-split btn-warning">
                   <i class="fas fa-pen"></i></a>

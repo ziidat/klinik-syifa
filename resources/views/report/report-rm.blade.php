@@ -1,6 +1,3 @@
-<div class="wrapper">
-  <!-- Main content -->
-  <section class="invoice">
     <!-- title row -->     
       <div class="form-group row"> 
           <div class="col-sm-0 mb-0 mb-sm-0">
@@ -24,189 +21,167 @@
             </div>
           </div>
         <!-- /.col -->
-      </div>
+    </div>
       <hr/>
       <h3 class="text-center">REKAM MEDIS PASIEN</h3>
       <hr/>
       <!-- info row -->
-      <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col">
           <h5><strong>Biodata Pasien</strong></h5>
-          <address>
-            <div class="col-md-12 kertas-biodata">
-              <div class="biodata">
-              <table width="100%" border="0">
-          <tbody><tr>
-              <td valign="top">
-              <table border="0" width="100%" style="padding-left: 2px; padding-right: 13px;">
-                <tbody>
-                  <tr>
-                    <td width="50%" valign="top" class="textt">Nama</td>
-                      <td width="5%">:</td>
-                      <td>Achmad Fauzi</td>
-                  </tr>
-                <tr>
-                    <td class="textt">Jenis Kelamin</td>
-                      <td>:</td>
-                      <td>Laki-Laki</td>
-                  </tr>
-                <tr>
-                    <td class="textt">Umur</td>
-                      <td>:</td>
-                      <td>10 Tahun</td>
-                  </tr>
-                <tr>
-                    <td class="textt">Pekerjaan</td>
-                      <td>:</td>
-                      <td>Pegawai BUMN</td>
-                  </tr>
-                <tr>
-                    <td valign="top" class="textt">Alamat</td>
-                      <td valign="top">:</td>
-                      <td>Kp. Siluman Mangun Jaya Tambun</td>
-                  </tr>
-                <tr>
-                    <td class="textt">No HP</td>
-                      <td>:</td>
-                      <td>085771813550</td>
-                  </tr>
-              </tbody></table>
-              </td>
-          </tr>
-          </tbody></table>
-          </address>
-        </div>
-        <div class="col-sm-4 invoice-col">
-        </div>
-        <div class="col-sm-4 invoice-col">
-          Tanggal Periksa<br>
-          <strong>30 Juli 2020</strong>
-          <address>
-            Kategori Pasien<br>
-            <strong>UMUM</strong><br>
-          </address>
-        </div>
+        @if (isset($idens))
+          @foreach ($idens as $iden)
+            <form class="user" action="">
+              <address>
+                <div class="col-md-12 kertas-biodata">
+                  <div class="biodata">
+                    <table width="100%" border="0">
+                      <tbody><tr>
+                        <td valign="top">
+                          <table border="0" width="100%" style="padding-left: 2px; padding-right: 13px;">
+                            <tbody>
+                              <tr>
+                                <td width="50%" valign="top" class="textt">Nama</td>
+                                  <td width="5%">:</td>
+                                  <td>{{$iden->nama}}</td>
+                              </tr>
+                              <tr>
+                                <td class="textt">Jenis Kelamin</td>
+                                  <td>:</td>
+                                  <td>{{$iden->jk}}</td>
+                              </tr>
+                              <tr>
+                                <td class="textt">Umur</td>
+                                  <td>:</td>
+                                  <td>{{hitung_usia($iden->tgl_lhr)}}</td>
+                              </tr>
+                              <tr>
+                                <td class="textt">Pekerjaan</td>
+                                  <td>:</td>
+                                  <td>{{$iden->pekerjaan}}</td>
+                              </tr>
+                              <tr>
+                                <td valign="top" class="textt">Alamat</td>
+                                  <td valign="top">:</td>
+                                  <td>{{$iden->alamat}}</td>
+                              </tr>
+                              <tr>
+                                <td class="textt">No HP</td>
+                                  <td>:</td>
+                                  <td>{{$iden->hp}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr></tbody>
+                    </table>
+                  </div>
+                </div>
+              </address>
+            @endforeach
+            </form>
       </div>
-      <hr/>
-      <!-- /.row -->
-  
-      <!-- Rekam Medis Pasien -->
-  
-        <div class="row invoice-info">
-        <div class="col-sm-12 invoice-col">
-          <h5><strong>Rekam Medis Pasien</strong></h5>
-          <address>
-            <div class="col-md-12 kertas-biodata">
-              <div class="biodata">
-              <table width="100%" border="0">
-          <tbody><tr>
-              <td valign="top">
-              <table border="0" width="100%" style="padding-left: 2px; padding-right: 13px;">
-                <tbody>
-                  <tr>
-                    <td width="15%" valign="top" class="textt">Tanggal Periksa</td>
-                      <td width="2%">:</td>
-                      <td>30 Juli 2021</td>
-                  </tr>
-                <tr>
-                    <td class="textt">Dokter Pemeriksa</td>
-                      <td>:</td>
-                      <td>Dr. Ibral</td>
-                  </tr>
-                <tr>
-                    <td class="textt">Keluhan Utama</td>
-                      <td>:</td>
-                      <td>Pusing</td>
-                  </tr>
-                <tr>
-                    <td class="textt">Anamnesis</td>
-                      <td>:</td>
-                      <td>Demam 10 Hari</td>
-                  </tr>
-                <tr>
-                    <td valign="top" class="textt">Pemeriksaan</td>
-                      <td valign="top">:</td>
-                      <td>Suhu tubuh 38,7'C</td>
-                  </tr>
-                <tr>
-                    <td valign="top" class="textt">Diagnosis</td>
-                      <td valign="top">:</td>
-                      <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A placeat est hic exercitationem, laboriosam officia minima, minus eius ex eligendi maiores at fuga tempore dolorem? Nemo maxime quibusdam cupiditate vel?</td>
-                  </tr>
-              </tbody></table>
-              </td>
-          </tr>
-          </tbody></table>
-          </address>
-        </div>
-      </div>
-  
-      <!-- Pemeriksaan Penunjang-->
-      <div class="row invoice-info">
-        <div class="col-6 table-responsive">
-          <td> Pemeriksaan Penunjang</td>
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>No</th>
-              <th>Pemeriksaan</th>
-              <th>Nilai Normal</th>
-              <th>Hasil</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>Glukosa</td>
-              <td>< 100mg / dl</td>
-              <td>50 mg / dl</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Need for Speed IV</td>
-              <td>247-925-726</td>
-              <td>200 ml</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Monsters DVD</td>
-              <td>735-845-642</td>
-              <td>110</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.col -->
-        <!-- /.end pemeriksaan penunjang -->
-        <!-- /.start resep -->
-        <div class="col-6 table-responsive">
-          <td> Resep</td>
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama Resep</th>
-              <th>Aturan Pakai</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>paracetamol 500mg</td>
-              <td>2 x 1 hari</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Need for Speed IV</td>
-              <td>200 ml</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Monsters DVD</td>
-              <td>110</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!-- /.col -->
     </div>
+    @foreach ($datas as $data)
+        <div class="col-sm-4 invoice-col">
+        </div>
+        <input type="hidden" name="idpasien" value="{{ $data->idpasien }}">
+        <input type="hidden" name="id" value="{{ $data->id }}">
+        <div class="form-group row">
+          <div class="col-sm-3 text-md-right">
+              <label for="keluhan-utama"><strong>Tanggal Periksa</strong></label>
+          </div>
+          <div class="col-sm-1 text-md-center">
+              :
+          </div>
+          <div class="col-sm-8">
+              <p class="text-md-left">{{ format_date($data->created_time) }}</p>
+          </div>
+      </div>
+          <div class="form-group row">
+          <div class="col-sm-3 text-md-right">
+              <label ><strong>Dokter Pemeriksa</strong></label>
+          </div>
+          <div class="col-sm-1 text-md-center">
+              :
+          </div>
+          <div class="col-sm-8">
+             <p class="text-md-left">dr. {{ get_value('users',$data->dokter,'name') }}</p>
+          </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-sm-3 text-md-right">
+              <label for="keluhan-utama"><strong>Keluhan Utama</strong></label>
+          </div>
+          <div class="col-sm-1 text-md-center">
+              :
+          </div>
+          <div class="col-sm-8">
+              <p class="text-md-left">{{ $data->ku }}</p>
+          </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-sm-3 text-md-right">
+              <label for="keluhan-utama"><strong>Anamnesis</strong></label>
+          </div>
+          <div class="col-sm-1 text-md-center">
+              :
+          </div>
+          <div class="col-sm-8">
+              <p class="text-md-left">{{ $data->anamnesis}}</p>
+          </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-sm-3 text-md-right">
+              <label for="keluhan-utama"><strong>Pemeriksaan Fisix</strong></label>
+          </div>
+          <div class="col-sm-1 text-md-center">
+              :
+          </div>    
+          <div class="col-sm-8">
+              <p class="text-md-left">{{ $data->pxfisik}}</p>
+          </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-sm-3 text-md-right">
+              <label for="keluhan-utama"><strong>Pemeriksaan Penunjang</strong></label>
+          </div>
+          <div class="col-sm-1 text-md-center">
+              :
+          </div>
+          <div class="col-sm-8">
+              @if ($data->lab != NULL)
+              @for ($i=0;$i<$num['lab'];$i++) <li> {{get_value('lab',array_keys($data->labhasil)[$i],'nama')}} : {{$data->labhasil[array_keys($data->labhasil)[$i]]}} {{get_value('lab',array_keys($data->labhasil)[$i],'satuan')}} </li>
+              
+              @endfor
+              @endif
+          </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-sm-3 text-md-right">
+              <label for="keluhan-utama"><strong>Diagnosis</strong></label>
+          </div>
+          <div class="col-sm-1 text-md-center">
+              :
+          </div>
+          <div class="col-sm-8">
+              <p class="text-md-left">{{ $data->diagnosis }}</p>
+          </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-sm-3 text-md-right">
+              <label for="keluhan-utama"><strong>Resep</strong></label>
+          </div>
+          <div class="col-sm-1 text-md-center">
+              :
+          </div>
+          
+          <div class="col-sm-8">
+          @if ($data->resep != NULL)                          
+              @for ($i=0;$i<$num['resep'];$i++)
+                  <li class="text-md-left">{{get_value('obat',array_keys($data->allresep)[$i],'nama_obat')}} {{get_value('obat',array_keys($data->allresep)[$i],'sediaan')}} {{get_value('obat',array_keys($data->allresep)[$i],'dosis')}}  {{$data->allresep[array_keys($data->allresep)[$i]]}}</li>
+              @endfor
+             @endif
+          </div>
+        @endforeach    
+      </div>

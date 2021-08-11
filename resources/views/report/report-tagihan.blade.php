@@ -44,10 +44,6 @@
         <div class="col-sm-4 invoice-col">
           Tanggal Periksa<br>
           <strong>30 Juli 2020</strong>
-          <address>
-            Kategori Pasien Pasien<br>
-            <strong>UMUM</strong><br>
-          </address>
         </div>
       </div>
       <!-- /.row -->
@@ -68,31 +64,17 @@
             <tbody>
             <tr>
               <td>1</td>
-              <td>Call of Duty</td>
-              <td>455-981-221</td>
-              <td>El snort testosterone trophy driving gloves handsome</td>
-              <td>$64.50</td>
+              <td>Glukosa Puasa</td>
+              <td>Rp. 50.000,00</td>
+              <td>1</td>
+              <td>Rp. 50.000,00</td>
             </tr>
             <tr>
-              <td>1</td>
-              <td>Need for Speed IV</td>
-              <td>247-925-726</td>
-              <td>Wes Anderson umami biodiesel</td>
-              <td>$50.00</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Monsters DVD</td>
-              <td>735-845-642</td>
-              <td>Terry Richardson helvetica tousled street art master</td>
-              <td>$10.70</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Grown Ups Blue Ray</td>
-              <td>422-568-642</td>
-              <td>Tousled lomo letterpress</td>
-              <td>$25.99</td>
+              <td>2</td>
+              <td>Paracetamol</td>
+              <td>Rp. 5.000,00</td>
+              <td>10</td>
+              <td>Rp. 50.000,00</td>
             </tr>
             </tbody>
           </table>
@@ -113,12 +95,12 @@
           <div class="table-responsive">
             <table class="table">
               <tr>
-                <th style="width:67%">Jasa Dokter:</th>
-                <td>$250.30</td>
+                <th style="width:60%">Jasa Dokter:</th>
+                <td>Rp. 25.000,00</td>
               </tr>
               <tr>
                 <th>Total:</th>
-                <td>$265.24</td>
+                <td>Rp. 120.000,00</td>
               </tr>
             </table>
           </div>

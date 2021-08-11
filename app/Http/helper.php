@@ -163,7 +163,7 @@ use App\Models\obat;
         }
         if (count($minim) > 0) {
             for ($i=0;$i<sizeof($minim);$i++) {
-                 $warning[$minim[$i]]="Stok Obat ". get_value('obat',$minim[$i],'nama_obat') . " " . get_value('obat',$minim[$i],'sediaan'). " " . get_value('obat',$minim[$i],'dosis') . " " . get_value('obat',$minim[$i],'satuan') ." Mulai Menipis atau Sudah Habis";    
+                 $warning[$minim[$i]]="Stok Obat ". get_value('obat',$minim[$i],'nama_obat') . " " . get_value('obat',$minim[$i],'jenis'). " " . get_value('obat',$minim[$i],'dosis') . " " . get_value('obat',$minim[$i],'satuan') ." Mulai Menipis atau Sudah Habis";    
             return $warning;                     
             }
         }
@@ -187,7 +187,7 @@ use App\Models\obat;
             if (is_array($habis)) {
                 $i=0;
                 foreach ($habis as $h) {               
-                    $errors['resep'[$i]] = 'Stok Obat '. get_value('obat',$h,'nama_obat') . ' ' . get_value('obat',$h,'sediaan'). ' ' . get_value('obat',$h,'dosis') . ' ' . get_value('obat',$h,'satuan') .' Tidak Cukup!';
+                    $errors['resep'[$i]] = 'Stok Obat '. get_value('obat',$h,'nama_obat') . ' ' . get_value('obat',$h,'jenis'). ' ' . get_value('obat',$h,'dosis') . ' ' . get_value('obat',$h,'satuan') .' Tidak Cukup!';
                     $i++;
             }
                 if (isset($errors)) {
@@ -196,7 +196,7 @@ use App\Models\obat;
                 else {return NULL;}
             }
             else {
-                $errors['resep'] = 'Stok Obat '. get_value('obat',$habis,'nama_obat') . ' ' . get_value('obat',$habis,'sediaan'). ' ' . get_value('obat',$habis,'dosis') . ' ' . get_value('obat',$habis,'satuan') .' Tidak Cukup!';
+                $errors['resep'] = 'Stok Obat '. get_value('obat',$habis,'nama_obat') . ' ' . get_value('obat',$habis,'jenis'). ' ' . get_value('obat',$habis,'dosis') . ' ' . get_value('obat',$habis,'satuan') .' Tidak Cukup!';
                 if (isset($errors)) {
                 return $errors;
                 }

@@ -20,7 +20,7 @@ class CreatePasienTable extends Migration
             $table->string('pekerjaan');
             $table->string('jk');
             $table->text('alamat');
-            $table->string('hp');
+            $table->string('hp')->unique();
             $table->string('pendidikan');
             $table->string('no_bpjs')->nullable();
             $table->text('alergi')->nullable();

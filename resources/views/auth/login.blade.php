@@ -1,60 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Klinik Syifa Medikana</title>
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-  <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('template') }}/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="{{ asset('template') }}/dist/css/login.css">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Signin Template · Bootstrap v5.1</title>
 
-<body>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
 
-<div class="container fade-in-form" id="container">
-	
-	<div class="form-container sign-in-container">
-		<form action={{ route'login' }} method="get" action="/">
-		<?php
-          if(isset($_GET['pesan']) && ($_GET['pesan']== "gagal")){
-            echo "<p><font color='red'>Email atau Password Salah!!!</font></p><hr>";
-          }
-        ?>
-			<h1>Klinik Syifa Medikana</h1>
-			<div class="social-container">
-				
-			</div>
-			
-			<input type="text" id="login" name="username" placeholder="Username" />
-			<input type="password" name="password" id="password" placeholder="Password" />
-			
-			<button class="button button-hvr">LOGIN</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			
-			<div class="overlay-panel overlay-right" style=
-            "background: url('{{ asset('img') }}/bglogin.png')" >
-			</div>
-		</div>
-	</div>
-	
-</div>
+    
 
-<footer>
-	<p class="fade-in-form">
-		Created  by
-		<a  target="_blank" href="#">KZR_PIKAI TEAM</a>
-		
-		
-	</p>
-</footer>
-</body>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ asset('template') }}/dist/css/bootstrap.css">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css')}}/signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    
+<main class="form-signin">
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
+    <img class="mb-4" src="{{ asset('img') }}/logologin.png" alt="" width="200" height="200">
+    <h1 class="h3 mb-3 fw-normal">Klinik Syifa Medikana</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+      @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" name="password" required autocomplete="current-password" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+      @error('password')
+      <span class="invalid-feedback" role="alert">
+          <strong>{{ $message }}</strong>
+      </span>
+  @enderror
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; Klinik Syifa Medikana 2021</p>
+  </form>
+</main>
+
+
+    
+  </body>
 </html>
