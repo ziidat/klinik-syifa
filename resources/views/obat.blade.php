@@ -13,6 +13,7 @@
     <table id="example1" class="table table-bordered table-striped">
       <thead>
       <tr>
+          <th>No</th>
           <th>Nama Obat</th>
           <th>Jenis</th>
           <th>Dosis</th>
@@ -24,6 +25,7 @@
       <tbody>
         @foreach ($obat as $obat)
           <tr>
+            <td>{{ $loop->iteration }}</td>
             <td>{{ $obat->nama }}</td>
             <td>{{ $obat->jenis }}</td>
             <td>{{ $obat->dosis }}

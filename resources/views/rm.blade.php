@@ -20,7 +20,8 @@
       <table id="example1" class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>No RM</th>
+        <th>No</th>
+        <th>Id RM</th>
         <th>Id Pasien</th>
         <th>Tanggal Periksa</th>
         <th>Keluhan Utama</th>
@@ -33,6 +34,7 @@
     <tbody>
     @foreach ($rms as $rm)
       <tr>
+        <td>{{ $loop->iteration }}</td>
         <td>RM{{str_pad($rm->id, 4, '0', STR_PAD_LEFT)  }}</td>
         <td>P{{str_pad($rm->idpasien, 4, '0', STR_PAD_LEFT)  }}</td>
         <td>{{ format_date($rm->created_time) }}</td>

@@ -13,6 +13,7 @@
       <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
+          <th>No</th>
           <th>Nama Lab</th>
           <th>satuan</th>
           <th>Nilai Normal</th>
@@ -23,6 +24,7 @@
         <tbody>
           @foreach ($lab as $lab)
         <tr>
+          <td>{{ $loop->iteration }}</td>
           <td>{{ $lab->nama }}</td>
           <td>{{ $lab->satuan }}</td>
           <td>{{ $lab->nn }}</td>
