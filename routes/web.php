@@ -78,7 +78,6 @@ Route::group(['prefix' => 'users'], function(){
     Route::auth();
     });
 //Users
-Route::get('/users', 'UserController@index')->name('user')->middleware('auth','admin');
 Route::get('users/profile', 'ProfileController@index')->name('profile.edit')->middleware('auth');
 Route::get('users/profile/{id}', 'ProfileController@edit')->name('profile.edit.admin')->middleware('auth','admin');
 Route::patch('users/profile/simpan', 'ProfileController@simpan')->name('profile.simpan')->middleware('auth');
