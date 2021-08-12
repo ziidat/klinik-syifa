@@ -8,27 +8,56 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
+      <li class="nav-item dropdown">
+      @if (Auth::user()->admin === 1)
+            <!-- Nav Item - Admin -->
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="messagesDropdown" style="padding: 5px;">
+                <span class="badge badge-danger">Admin</span>
+              </a>
+            </li>
+            @endif
+                
+            <!-- Nav Item - Profesi -->
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="messagesDropdown" style="padding: 5px;">
+                <span class="badge badge-{{Auth::user()->profesi ? 'primary' :'warning'}}">{{Auth::user()->profesi}}</span>
+              </a>    
+            </li>
+              
+             <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown show">
+              <a class="nav-link" href="#" data-toggle="dropdown">
+                <i class="fas fa-bell fa-fw"></i>
+                
+                
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger navbar-badge">{{count(cek_stok_warning(10))}}</span>
+                
+              </a>
+                @if ($notif=cek_stok_warning(10))
+                @if (count($notif) > 0)
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+                @foreach ($notif as $id => $pesan)
+                <a class="dropdown-item d-flex align-items-center" href="{{route('obat.edit',$id)}}">
+                  <div class="mr-3">
+                    <div class="icon">
+                      <i class="fas fa-capsules"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <span class="font-weight-bold">{{$pesan}}</span>
+                  </div>
+                </a>
+                    @endforeach
               </div>
-            </div>
-          </form>
-        </div>
-      </li>
+            @endif
+        @endif
+            </li> 
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
           <img src="{{ asset('storage/avatars') }}/{{ Auth::user()->avatar }}" class="user-image img-circle elevation-2" alt="User Image">
@@ -85,16 +114,13 @@
                 <i class="nav-icon fas fa-chart-line"></i>
                 <p>Dashboard</p>
               </a>
-            </li> 
-            @if (Auth::user()->profesi == "Petugas")    
+            </li>             
             <li class="nav-item">
               <a href="{{ route('pasien.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-user-injured"></i>
                 <p>Pasien</p>
               </a>
             </li>
-            @else
-          @endif
             <li class="nav-item">
               <a href="{{ route('rm') }}" class="nav-link">
                 <i class="nav-icon fas fa-book-medical"></i>

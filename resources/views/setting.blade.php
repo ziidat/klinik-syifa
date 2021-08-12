@@ -32,11 +32,13 @@
                             </div>
                          </div>
                         <div class="form-group row">
-                            <div class="col-sm-8 mb-3 mb-sm-0">
+                            <div class="col-sm-4 mb-3 mb-sm-0">
                             </div>
-                            <a href="{{ route('user') }}" class="btn btn-danger btn-block btn">
-                                <i class="fas fa-arrow-left fa-fw"></i> Kembali
-                            </a>
+                            <div class="col-sm-1 mb-3 mb-sm-0">
+                                <a href="{{ route('user') }}" class="btn btn-danger btn-block btn">
+                                    <i class="fas fa-arrow-left fa-fw"></i> Kembali
+                                </a>
+                            </div>
                             <div class="col-sm-1 mb-3 mb-sm-0">
                                 <button type="submit" class="form-control btn-primary"><i class="fas fa-save"></i>  Simpan</i></button>
                             </div>

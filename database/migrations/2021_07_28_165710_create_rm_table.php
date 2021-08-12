@@ -20,11 +20,11 @@ class CreateRmTable extends Migration
             $table->text('anamnesis');
             $table->text('cekfisik');
             $table->text('lab');
-            $table->text('hasil');
-            $table->string('diagnosis');
-            $table->text('resep');
-            $table->text('jumlah');
-            $table->text('aturan');
+            $table->text('hasil')->nullable();
+            $table->string('diagnosis')->nullable();
+            $table->text('resep')->nullable();
+            $table->text('jumlah')->nullable();
+            $table->text('aturan')->nullable();
             $table->integer('dokter');
             $table->timestamps();
         });

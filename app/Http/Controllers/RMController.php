@@ -29,9 +29,10 @@ class RMController extends Controller
     }
     public function update_rm(Request $request)
     {
-        // $this->validate($request, [
+        // $test=$request->all();
+        // dd($test);
+        // $request->validate([
         //     'idpasien' => 'required|numeric',
-        //     'keluhan' => 'required|max:40',
         //     'anamnesis' => 'required|max:1000',
         //     'cekfisik' => 'required|max:1000',
         //     'diagnosis' => 'required|max:40',
@@ -46,9 +47,9 @@ class RMController extends Controller
             }
 
 
-            $this->validate($request, [
-                'lab.*.hasil' => 'required|numeric',          
-            ]);
+            // $request->validate([
+            //     'lab.*.hasil' => 'required|numeric',          
+            // ]);
             $lab_id = decode('lab','id',$request->lab);
             $lab_hasil = decode('lab','hasil',$request->lab);
        }
@@ -64,10 +65,10 @@ class RMController extends Controller
                 $errors = new MessageBag(['resep'=>['resep yang sama tidak boleh dimasukan berulang']]);
                 return back()->withErrors($errors);
             }
-            $this->validate($request, [
-                'resep.*.jumlah' => 'required|numeric',
-                'resep.*.aturan' => 'required',
-            ]);
+            // $request->validate([
+            //     'resep.*.jumlah' => 'required|numeric',
+            //     'resep.*.aturan' => 'required',
+            // ]);
             $resep_id = decode('resep','id',$request->resep);
             $resep_jumlah = decode('resep','jumlah',$request->resep);
             $resep_dosis = decode('resep','aturan',$request->resep); 
@@ -213,15 +214,16 @@ class RMController extends Controller
     
            public function simpan_rm(Request $request)
     {  
+        // $test=$request->dokter;
+        // dd($test);
 
-        // $request->validate( [
-        //     'idpasien' => 'required|numeric',
-        //     'keluhan' => 'required|max:40',
-        //     'anamnesis' => 'required|max:1000',
-        //     'cekfisik' => 'max:1000',
-        //     'diagnosis' => 'max:40',
-        //     'dokter' => 'required',
-        // ]);
+        $request->validate([
+            'idpasien' => 'required|numeric',
+            'anamnesis' => 'required|max:1000',
+            'cekfisik' => 'max:1000',
+            'diagnosis' => 'max:40',
+            'dokter' => 'required',
+        ]);
        // Decoding array input pemeriksaan lab
        if (isset($request->lab))
        {
@@ -229,7 +231,7 @@ class RMController extends Controller
                 $errors = new MessageBag(['lab'=>['Lab yang sama tidak boleh dimasukan berulang']]);
                 return back()->withErrors($errors);
             }
-            $this->validate($request, [
+            $request->validate([
                 'lab.*.hasil' => 'required|numeric|digits_between:1,4',          
             ]);
             $lab_id = decode('lab','id',$request->lab);
@@ -247,38 +249,42 @@ class RMController extends Controller
                 $errors = new MessageBag(['resep'=>['resep yang sama tidak boleh dimasukan berulang']]);
                 return back()->withErrors($errors);
             }
-            $this->validate($request, [
-                'resep.*.jumlah' => 'required|numeric',
+            $request->validate([
+                'resep.*.jumlah' => 'required|numeric|digits_between:1,3',
                 'resep.*.aturan' => 'required',
             ]);
             $resep_id = decode('resep','id',$request->resep);
             $resep_jumlah = decode('resep','jumlah',$request->resep);
             $resep_dosis = decode('resep','aturan',$request->resep); 
+
+            $newresep = array();
+            $oldresep=array();
+            foreach ($request->resep as $resep){
+            $newresep[$resep['id']] = $resep['jumlah'];
+
+            if (empty($oldresep)) {
+                $resultanresep = resultan_resep($oldresep,$newresep);
+            }
+            else {$resultanresep=$newresep;}
+            $errors = validasi_stok($resultanresep);
+            if ($errors !== NULL) {
+              return  back()->withErrors($errors);
+            }
+      
+            foreach ($resultanresep as $key => $value) {
+                $perintah=kurangi_stok($key,$value);
+                if ($perintah === false) { $habis = array_push($habis,$key); }
+            }
+            
+        }
         }
         else {
             $resep_id = "";
             $resep_jumlah = "";
             $resep_dosis = "";
         }
-        $newresep = array();
-        $oldresep=array();
-        foreach ($request->resep as $resep){
-            $newresep[$resep['id']] = $resep['jumlah'];
-            
-        }
-        if (empty($oldresep)) {
-            $resultanresep = resultan_resep($oldresep,$newresep);
-        }
-        else {$resultanresep=$newresep;}
-        $errors = validasi_stok($resultanresep);
-        if ($errors !== NULL) {
-          return  back()->withErrors($errors);
-        }
-  
-        foreach ($resultanresep as $key => $value) {
-            $perintah=kurangi_stok($key,$value);
-            if ($perintah === false) { $habis = array_push($habis,$key); }
-        }
+        
+        
    
         DB::table('rm')->insert([
             'idpasien' => $request->idpasien,
@@ -308,8 +314,9 @@ class RMController extends Controller
         //  return redirect($buka)->with('pesan',$pesan);
 
         session()->flash('success', 'Data RM Berhasil di simpan');
-
-        return view('rm');
+         return redirect()->back();
+        
+        // return view('rm');
          
     }
     

@@ -3647,10 +3647,10 @@ input[type="button"].btn-block {
 
 .dropdown-header {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   margin-bottom: 0;
   font-size: 0.875rem;
-  color: #6c757d;
+  color: #858796;
   white-space: nowrap;
 }
 
@@ -5468,6 +5468,15 @@ input[type="button"].btn-block {
 
 a.badge:hover, a.badge:focus {
   text-decoration: none;
+}
+
+.sidebar .nav-item .nav-link .badge-counter,
+.topbar .nav-item .nav-link .badge-counter {
+  position: absolute;
+  transform: scale(0.7);
+  transform-origin: top right;
+  right: .25rem;
+  margin-top: -.25rem;
 }
 
 .badge:empty {

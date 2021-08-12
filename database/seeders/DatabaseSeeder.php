@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
     
         User::create([
-            'username' => 'fauzi',
+            'username' => 'admin',
             'name' => 'Achmad Fauzi',
             'email' => 'achmadfauzi987@gmail.com',
             'admin' => '1',
@@ -29,12 +29,21 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'username' => 'dokter',
-            'name' => 'Dr. Ibral',
+            'name' => 'Ibral',
             'email' => 'ibral@gmail.com',
-            'admin' => '0',
+            'admin' => '1',
             'Profesi' => 'Dokter',
             'Avatar' => 'default.jpg',
             'password' => bcrypt('dokterdokter')
+        ]);
+        User::create([
+            'username' => 'petugas',
+            'name' => 'Fajar',
+            'email' => 'Fajar@gmail.com',
+            'admin' => '0',
+            'Profesi' => 'Petugas',
+            'Avatar' => 'default.jpg',
+            'password' => bcrypt('petugas')
         ]);
 
         rm::create([

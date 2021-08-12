@@ -19,7 +19,7 @@
              </div>
             <div class="form-group row">
                 <div class="col-sm-4 mb-3 mb-sm-0">
-                    <select class="form-control " name="jenis" placeholder="Bentuk Sediaan" value="{{ $obat->jenis }}"required>
+                    <select class="form-control " name="jenis" placeholder="Jenis Obat" value="{{ $obat->jenis }}"required>
                           <option value="{{ $obat->jenis }}" selected disabled>{{ $obat->jenis }}</option>
                           <option value="Tablet"{{ $obat->jenis == 'Tablet' ? 'selected' :''}} >Tablet</option>
                           <option value="Kapsul"{{ $obat->jenis == 'kapsul' ? 'selected' :''}} >Kapsul</option>

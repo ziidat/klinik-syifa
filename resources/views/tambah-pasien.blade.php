@@ -35,7 +35,7 @@
             </div>
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
-                <select class="form-control " name="pendidikan_terakhir" placeholder="Pendidikan terakhir" required>
+                <select class="form-control  " name="pendidikan_terakhir" placeholder="Pendidikan terakhir" required>
                     <option value="" selected disabled>Pendidikan Terakhir</option>
                     <option value="Tidak Ssekolah">Tidak Sekolah</option>
                     <option value="SD">SD</option>

@@ -102,25 +102,41 @@
       @foreach ($idens as $iden)
       <input type="hidden" name="idpasien" value="{{ $iden->id }}">
       @endforeach
-          <div class="form-group row">
-              <label for="dokter">Dokter Pemeriksa</label>
-              <select class="form-control " name="dokter" {{(Auth::user()->admin !== 1) ? (Auth::user()->profesi !== "Staff") ? 'disabled="true"' : '' : ''}}>
-              @foreach ($dokters as $dokter)
-              <option value ="{{$dokter->id}}" {{$dokter->id === Auth::user()->id ? 'selected' : ''}}>dr. {{get_value('users',$dokter->id,'name') }}</option>
-              @endforeach
-              </select>
-          </div>   
+      
+      <div class="form-group row">
+        <label for="dokter">Dokter Pemeriksa</label>
+        <select class="form-control " name="dokter" {{(Auth::user()->admin !== 1) ? (Auth::user()->profesi !== "Staff") ? 'disabled="true"' : '' : ''}}>
+        @foreach ($dokters as $dokter)
+        <option value ="{{$dokter->id}}" {{$dokter->id === Auth::user()->id ? 'selected' : ''}}>dr. {{get_value('users',$dokter->id,'name') }}</option>
+        @endforeach
+        </select>
+    </div> 
           <div class="form-group row">
               <label for="keluhan-utama">Keluhan Utama</label>
-              <input type="text" class="form-control " name="keluhan_utama" value="{{Request::old('keluhan_utama')}}" required>
+              <input type="text" class="form-control @error('keluhan') is-invalid @enderror " name="keluhan_utama" required>
+              @error('keluhan')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
           </div>
           <div class="form-group row">
               <label for="anamnesis">Anamnesis</label>
-              <textarea type="date" class="form-control " name="anamnesis" required></textarea>
+              <textarea type="date" class="form-control @error('anamnesis') is-invalid @enderror" name="anamnesis" required></textarea>
+            @error('anamnesis')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+            @enderror
           </div>
           <div class="form-group row">
               <label for="pemeriksaan_fisik">Pemeriksaan Fisik</label>
-              <textarea type="date" class="form-control " name="px_fisik" required></textarea>
+              <textarea type="date" class="form-control @error('pemeriksaan_fisik') is-invalid @enderror" name="px_fisik" required></textarea>
+            @error('pemeriksaan_fisik')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+            @enderror
           </div>
           <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -130,12 +146,17 @@
           <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
               
-              <select class="form-control "id="penunjang" name="penunjang" {{Auth::user()->profesi !== "Dokter" ? 'disabled="true"': ''}}>
-                  <option value="" selected disabled>Pilih satu</option>
+              <select class="form-control @error('penunjang') is-invalid @enderror "id="penunjang" name="penunjang" {{Auth::user()->profesi !== "Dokter" ? 'disabled="true"': ''}}>
+                  <option value="" required>Pilih satu</option>
                   @foreach ($labs as $lab)
                   <option satuan="{{$lab->satuan}}" value="{{$lab->id}}">{{$lab->nama}}</option>
                   @endforeach
               </select>  
+              @error('penunjang')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+              @enderror
             </div>
               <div class="col-sm-6">
                   <a href="javascript:;" onclick="addpenunjang()" type="button" name="add" id="add" class="btn btn-success">Tambahkan</a>
@@ -160,7 +181,7 @@
           <div class="form-group row">
               <div class="col-sm-9 mb-0 mb-sm-0">
               <select class="form-control " name="reseplist" id="reseplist" {{Auth::user()->profesi !== "Dokter" ? 'disabled="true"': ''}}>
-                  <option value="" selected disabled>Pilih satu</option>
+                  <option value="" required>Pilih satu</option>
                   @foreach ($obats as $obat)
                   <option value="{{$obat->id}}">{{$obat->nama}} {{$obat->jenis}} {{$obat->dosis}}{{$obat->satuan}}</option>
                   @endforeach
@@ -224,16 +245,16 @@ $("#dynamicTable").append('<tr><td><input type="hidden" name="lab['+i+'][id]" va
 };
 
 function addresep() {
-
-
-var res= $("#reseplist option:selected").html();
-var resid= $("#reseplist").val();
-if (resid !== null) {
-//code
-$("#reseps").append('<tr><td><input type="hidden" name="resep['+a+'][id]" value="'+resid+'" class="form-control" readonly></td><td width="30%"><input type="text" name="resep['+a+'][nama]" value="'+res+'" class="form-control" readonly></td><td width ="10%"><input type="text" name="resep['+a+'][jumlah]" placeholder="Jumlah" class="form-control" required><td width="30%"><input type="text" name="resep['+a+'][aturan]" placeholder="Aturan pakai" class="form-control" required></td><td><button type="button" class="btn btn-danger remove-res">Hapus</button></td></tr>');
-}
-++a;
-};
+        
+        
+        var res= $("#reseplist option:selected").html();
+        var resid= $("#reseplist").val();
+        if (resid !== null) {
+            //code
+            $("#reseps").append('<tr><td><input type="hidden" name="resep['+a+'][id]" value="'+resid+'" class="form-control" readonly></td><td width="30%"><input type="text" name="resep['+a+'][nama]" value="'+res+'" class="form-control" readonly></td><td width ="10%"><input type="text" name="resep['+a+'][jumlah]" placeholder="Jumlah" class="form-control" required><td width="30%"><input type="text" name="resep['+a+'][aturan]" placeholder="Aturan pakai" class="form-control" required></td><td><button type="button" class="btn btn-danger remove-res">Hapus</button></td></tr>');
+        }
+        ++a;
+    };
 
 $(document).on('click', '.remove-pen', function(){  
 $(this).parents('tr').remove();

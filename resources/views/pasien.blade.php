@@ -4,10 +4,13 @@
 
 @section('container')
 <div class="card shadow mb-4">
+  @if (Auth::user()->profesi == "Petugas") 
         <div class="card-header d-sm-flex align-items-center justify-content-between py-3">               
             <a href="{{ route('pasien.create') }}" class=" btn btn-info btn-sm shadow-sm">
             <i class="fas fa-plus fa-sm"></i> Tambah Pasien</a> 
         </div>
+  @else
+  @endif
   <!-- /.card-header -->
   <div class="card-body">
     <table id="example1" class="table table-bordered table-striped">
@@ -36,10 +39,13 @@
             <td>
               <a href ="{{route('rm.list', $pasien->id) }}" title="Lihat" class="btn btn-sm btn-icon-split btn-primary">
                   <i class="fas fa-file"></i></a>
+                  @if (Auth::user()->profesi == "Petugas") 
               <a href ="{{ route('pasien.edit',$pasien->id) }}" title="Edit" class="btn btn-sm btn-icon-split btn-warning">
                   <i class="fas fa-pen"></i></a>
                   <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$pasien->id}})" data-target="#modal-sm" class="btn btn-sm btn-icon-split btn-danger">
-                    <span class="icon"><i class="fa  fa-trash" style="padding-top: 4px;"></i></span><span class="text"></span></a>
+                  <span class="icon"><i class="fa  fa-trash" style="padding-top: 4px;"></i></span><span class="text"></span></a>
+                  @else
+                  @endif
                 </td>
               </tr>
             @endforeach

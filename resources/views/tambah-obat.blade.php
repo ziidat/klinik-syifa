@@ -19,7 +19,7 @@
             <div class="form-group row">
                 <div class="col-sm-4 mb-3 mb-sm-0">
                     <select class="form-control " name="jenis" placeholder="Bentuk Sediaan"required>
-                          <option value="" selected disabled>Sediaan Obat</option>
+                          <option value="" selected disabled>Jenis Obat</option>
                           <option value="Tablet">Tablet</option>
                           <option value="Kapsul">Kapsul</option>
                           <option value="Syrup">Syrup</option>
