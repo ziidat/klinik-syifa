@@ -17,6 +17,7 @@ class DashboardController extends Controller
 
     public function index()
     {
+
         $jumlah['pasien']=pasien::count();
         $jumlah['kunjungan']=rm::count();
         $jumlah['lab']=lab::count();
@@ -26,6 +27,8 @@ class DashboardController extends Controller
         $rms = rm::all();
         $obats= obat::all();
         $warning=cek_stok_warning (10); 
+
+        
 
         return view('index',compact('jumlah','pasiens','labs','rms','obats','warning'));
     }

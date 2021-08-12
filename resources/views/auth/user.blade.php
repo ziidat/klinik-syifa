@@ -4,9 +4,11 @@
 
 @section('container')
 <div class="card shadow mb-4">
-  <div class="card-header d-sm-flex align-items-center justify-content-between py-3">               
-      <a href="{{route('register')}}" class="d-none d-sm-inline-block btn btn-info btn-sm shadow-sm">
+  <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
+    <a href="{{route('register')}}" class="d-none d-sm-inline-block btn btn-info btn-sm shadow-sm">
       <i class="fas fa-plus fa-sm"></i> Tambah Pengguna</a> 
+      <a href="{{route('pengaturan')}}" class="d-none d-sm-inline-block btn btn-success btn-sm shadow-sm">
+        <i class="fas fa-user fa-sm"></i> Jasa Dokter</a>                
   </div>
   <div class="card-body">
     <table id="example1" class="table table-bordered table-striped">
@@ -34,9 +36,8 @@
             <a href ="{{ (Auth::user()->id === $user->id) ? route('profile.edit') : route('profile.edit.admin', $user->id) }}" class="btn btn-sm btn-icon-split btn-warning">
                 <span class="icon"><i class="fa fa-pen" style="padding-top: 4px;"></i></span><span class="text">Edit</span>
             </a>
-            <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$user->id}})" data-target="#DeleteModal" class="btn btn-sm btn-icon-split btn-danger">
-                <span class="icon"><i class="fa  fa-trash" style="padding-top: 4px;"></i></span><span class="text">Hapus</span></a>
-
+            <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$user->id}})" data-target="#modal-sm" class="btn btn-sm btn-icon-split btn-danger">
+              <span class="icon"><i class="fa  fa-trash" style="padding-top: 4px;"></i></span><span class="text"></span>Hapus</a>
           </td>
         </tr>
       @endforeach
@@ -44,18 +45,20 @@
     </table>
   </div>
 </div>
+@endsection
+@section('script')
 <script type="text/javascript">
-function deleteData(id)
-{
-var id = id;
-var url = '{{ route("user.destroy", ":id") }}';
-url = url.replace(':id', id);
-$("#deleteForm").attr('action', url);
-}
+  function deleteData(id)
+  {
+      var id = id;
+      var url = '{{ route("user.destroy", ":id") }}';
+      url = url.replace(':id', id);
+      $("#deleteForm").attr('action', url);
+  }
 
-function formSubmit()
-{
-$("#deleteForm").submit();
-}
+  function formSubmit()
+  {
+      $("#deleteForm").submit();
+  }
 </script>
 @endsection

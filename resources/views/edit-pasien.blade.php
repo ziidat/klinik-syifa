@@ -38,7 +38,7 @@
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <select class="form-control " name="pendidikan_terakhir" placeholder="Pendidikan terakhir" required>
-                    <option value="{{ $pasien->pendidikan }}" selected disabled>{{ $pasien->pendidikan }}</option>
+                    <option value="{{ $pasien->pendidikan }}">{{ $pasien->pendidikan }}</option>
                     <option value="Tidak Sekolah" {{ $pasien->pendidikan == 'Tidak Sekolah' ? 'selected' : ''  }}>Tidak Sekolah</option>
                                 <option value="SD" {{ $pasien->pendidikan == 'SD' ? 'selected' : '' }}>SD</option>
                                 <option value="SMP"{{ $pasien->pendidikan == 'SMP' ? 'selected' : '' }}>SMP</option>
@@ -48,7 +48,7 @@
               </div>
               <div class="col-sm-6">
                 <select class="form-control " name="jenis_kelamin" placeholder="Jenis Kelamin" required>
-                    <option value="{{ $pasien->jk }}" selected disabled>{{ $pasien->jk }}</option>
+                    <option value="{{ $pasien->jk }}" >{{ $pasien->jk }}</option>
                     <option value="Laki-laki"{{ $pasien->jk == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                                 <option value="Perempuan"{{ $pasien->jk == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
 

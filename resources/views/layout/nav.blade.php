@@ -31,13 +31,13 @@
       </li>
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img src="{{ asset('template') }}/dist/img/{{ Auth::user()->avatar }}" class="user-image img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('storage/avatars') }}/{{ Auth::user()->avatar }}" class="user-image img-circle elevation-2" alt="User Image">
           <span class="color=white d-none d-md-inline">{{ Auth::user()->name }}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-olive">
-            <img src="{{ asset('template') }}/dist/img/{{ Auth::user()->avatar }}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('storage/avatars') }}/{{ Auth::user()->avatar }}" class="img-circle elevation-2" alt="User Image">
 
             <p>
               {{ Auth::user()->name }}
@@ -46,7 +46,7 @@
           </li>
           <!-- Menu Footer-->
           <li class="user-footer">
-            <a href="#" class="btn btn-default btn-flat">Profile</a>
+            <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a>
             <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -85,19 +85,23 @@
                 <i class="nav-icon fas fa-chart-line"></i>
                 <p>Dashboard</p>
               </a>
-            </li>     
+            </li> 
+            @if (Auth::user()->profesi == "Petugas")    
             <li class="nav-item">
               <a href="{{ route('pasien.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-user-injured"></i>
                 <p>Pasien</p>
               </a>
             </li>
+            @else
+          @endif
             <li class="nav-item">
-              <a href="{{ route('rm.index') }}" class="nav-link">
+              <a href="{{ route('rm') }}" class="nav-link">
                 <i class="nav-icon fas fa-book-medical"></i>
                 <p>Rekam Medis</p>
               </a>
             </li>
+            @if (Auth::user()->profesi == "Petugas")
             <li class="nav-item">
               <a href="{{ route('obat.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-capsules"></i>
@@ -110,12 +114,17 @@
                 <p>Lab</p>
               </a>
             </li>
+            @else
+          @endif
+            @if (Auth::user()->admin == "1")
           <li class="nav-header">PENGATURAN</li>
           <li class="nav-item">
             <a href="{{ route('user.index') }}" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>Pengaturan Pengguna</p>
             </a>
+            @else
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

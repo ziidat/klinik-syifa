@@ -61,7 +61,7 @@
                 </div>                                
             <div class="form-group row justify-content-center">
                 <div class="card-footer">
-                    <a href="/pasien" class="btn btn-danger btn-block btn">
+                    <a href="{{ route('pasien.index') }}" class="btn btn-danger btn-block btn">
                         <i class="fas fa-arrow-left fa-fw"></i> Kembali
                     </a>
                 </div>

@@ -30,80 +30,101 @@
       <hr/>
       <!-- info row -->
       <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">
-          Kepada
+        <div class="col-sm-4 ml-3 invoice-col">
+            <strong>Kepada :</strong>
           <address>
-            <strong>Achmad Fauzi</strong><br>
-            Kp. Siluman Mangun Jaya Tambun<br>
-            Tgl Lahir&ensp;: 16 Januari 1998<br>
-            No Hp&ensp;&ensp;&ensp;: 085771813550<br>
+            @if (isset($idens))
+            @foreach ($idens as $iden)
+            <div class="col-md-12 kertas-biodata">
+              <div class="biodata">
+                <table width="100%" border="0">
+                  <tbody><tr>
+                    <td valign="top">
+                      <table border="0" width="100%" style="padding-left: 2px; padding-right: 13px;">
+                        <tbody>
+                          <tr>
+                            <td width="50%" valign="top" class="textt">Nama</td>
+                              <td width="5%">:</td>
+                              <td>{{$iden->nama}}</td>
+                          </tr>
+                          <tr>
+                            
+                          <tr>
+                            <td class="textt">Umur</td>
+                              <td>:</td>
+                              <td>{{hitung_usia($iden->tgl_lhr)}}</td>
+                          </tr>
+                          <tr>
+                          <tr>
+                            <td valign="top" class="textt">Alamat</td>
+                              <td valign="top">:</td>
+                              <td>{{$iden->alamat}}</td>
+                          </tr>
+                          <tr>
+                            <td class="textt">No HP</td>
+                              <td>:</td>
+                              <td>{{$iden->hp}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr></tbody>
+                </table>
+              </div>
+            </div> 
           </address>
-        </div>
-        <div class="col-sm-4 invoice-col">
-        </div>
-        <div class="col-sm-4 invoice-col">
-          Tanggal Periksa<br>
-          <strong>30 Juli 2020</strong>
-        </div>
-      </div>
-      <!-- /.row -->
-  
-      <!-- Table row -->
-      <div class="row">
-        <div class="col-12 table-responsive">
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>No</th>
-              <th>Item</th>
-              <th>Harga Satuan</th>
-              <th>Kuantitas</th>
-              <th>Subtotal</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>Glukosa Puasa</td>
-              <td>Rp. 50.000,00</td>
-              <td>1</td>
-              <td>Rp. 50.000,00</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Paracetamol</td>
-              <td>Rp. 5.000,00</td>
-              <td>10</td>
-              <td>Rp. 50.000,00</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-  
-      <div class="row">
-        <!-- accepted payments column -->
-        <div class="col-8">
-          <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-          </p>
-        </div>
-        <!-- /.col -->
-        <div class="col-4">
-  
-          <div class="table-responsive">
-            <table class="table">
-              <tr>
-                <th style="width:60%">Jasa Dokter:</th>
-                <td>Rp. 25.000,00</td>
-              </tr>
-              <tr>
-                <th>Total:</th>
-                <td>Rp. 120.000,00</td>
-              </tr>
-            </table>
+          @endforeach
+            @endif
           </div>
         </div>
-        <!-- /.col -->
+        
+        <
+          <h6 class="m-0 ml-3 font-weight-bold text-dark">Tagihan Kunjungan Pasien</h6></a>
+        <div class="collapse show" id="tambahrm">
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="table-responsive-sm">
+                    <table class="table table-striped">
+                    <thead>
+                    
+                    <tr>
+                    <th class="center">#</th>
+                    <th>Item</th>
+                    <th class="right">Harga Satuan</th>
+                      <th class="center">Kuantitas</th>
+                    <th class="right">Sub Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+                    @for ($n=0;$n<sizeof($items);$n++)
+                    <tr>
+                    <td class="center">{{$n + 1}}</td>
+                    <td class="left strong">{{$item=array_keys($items)[$n]}}</td>
+                        @for ($i=0;$i<3;$i++)
+                            @if ($i != 1)
+                                <td class="center">{{formatrupiah($items[$item][$i])}}</td>
+                            @else
+                                <td class="center">{{$items[$item][$i]}}</td>
+                            @endif
+                        @endfor
+                    </tr>
+                    @endfor
+                    <tr>
+                    <th class="center"></th>
+                    <th>Jumlah Harga</th>
+                    <th class="right"></th>
+                      <th class="center"></th>
+                    <th class="right">{{formatrupiah(jumlah_harga($items))}}
+                  </th>
+                </tr>
+              </tbody>
+             </table>
+           </div>                  
+        </div>   
       </div>
+    </div>
+        
+
+
+           

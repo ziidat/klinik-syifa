@@ -30,13 +30,23 @@ Route::group(['middleware'=> 'auth'],function(){
     Route::resource('obat','ObatController');
 
     //RM
-    Route::resource('rm','RMController');
-    Route::get('rm/pilih-pasien',['as' => 'pilih.rm', 'uses' => 'RMController@pilihrm']);
-    Route::get('rm/create/{id}', ['as' => 'tambah.rm', 'uses' => 'RMController@tambah_rmid']);
-    Route::get('/lihatrm/{id}', ['as' => 'lihat.rm', 'uses' => 'RMController@lihatrm']);
-    Route::get('/rm/list/{idpasien}',['as'=> 'rm.list','uses'=>'RMController@list_rm']);
-    Route::get('/rm/edit/{id}', ['as'=> 'rm.edit','uses'=>'RMController@edit_rm']);
-    Route::get('/rm/lihat/{id}', ['as'=> 'rm.lihat','uses'=>'RMController@lihat_rm']);
+    Route::get('/rm', 'RMController@index')->name('rm');
+
+    Route::delete('/rm/hapus/{rm}','RMController@hapus_rm')->name('rm.destroy');
+
+    Route::get('/rm/edit/{id}', 'RMController@edit_rm')->name('rm.edit');
+
+    Route::get('/rm/tambah', 'RMController@tambah_rm')->name('rm.tambah');
+
+    Route::get('/rm/tambah/{idpasien}', 'RMController@tambah_rmid')->name('rm.tambah.id');
+
+    Route::post('/rm/simpan/', 'RMController@simpan_rm')->name('rm.simpan');
+
+    Route::post('/rm/update/', 'RMController@update_rm')->name('rm.update');
+
+    Route::get('/rm/list/{idpasien}', 'RMController@list_rm')->name('rm.list');
+
+    Route::get('/rm/lihat/{id}', 'RMController@lihat_rm')->name('rm.lihat');
   });
 
 // Route::group(['middleware'=> 'auth','admin'],function(){
@@ -46,23 +56,6 @@ Route::post('/register', ['as' => 'register', 'uses' => 'RegistrationController@
 // });
 Route::get('/login', ['as' => 'login', 'uses' => 'LoginController@create']);
 
-// report
-Route::get('/lihatrm', function () {
-  return view('lihat-rm');
-  }
-);
-Route::get('/cetakrm', function () {
-  return view('cetak-rm');
-  }
-);
-Route::get('/lihattagihan', function () {
-  return view('lihat-tagihan');
-  }
-);
-Route::get('/cetaktagihan', function () {
-  return view('cetak-tagihan');
-  }
-);
 
 //Tagihan
 Route::get('/tagihan/{id}', 'RMController@tagihan')->name('tagihan')->middleware('auth');
@@ -84,18 +77,16 @@ Auth::routes([
 Route::group(['prefix' => 'users'], function(){
     Route::auth();
     });
-
-Route::get('users/profile', 'ProfileController@index')->name('profile.edit')->middleware('auth');
-
-Route::get('users/profile/{id}', 'ProfileController@edit')->name('profile.edit.admin')->middleware('auth','admin');
-
-Route::patch('users/profile/simpan', 'ProfileController@simpan')->name('profile.simpan')->middleware('auth');
-//endProfile
-
 //Users
 Route::get('/users', 'UserController@index')->name('user')->middleware('auth','admin');
+Route::get('users/profile', 'ProfileController@index')->name('profile.edit')->middleware('auth');
+Route::get('users/profile/{id}', 'ProfileController@edit')->name('profile.edit.admin')->middleware('auth','admin');
+Route::patch('users/profile/simpan', 'ProfileController@simpan')->name('profile.simpan')->middleware('auth');
+Route::delete('/users/delete/{id}', 'UserController@destroy')->name('user.destroy')->middleware('auth','admin');
+//endProfile
 
-Route::delete('/users/delete/{id}', 'UserController@hapus')->name('user.destroy')->middleware('auth','admin');
+
+
 
 
 //endUsers

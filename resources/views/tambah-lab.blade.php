@@ -32,7 +32,7 @@
             </div>
             <div class="form-group row justify-content-center">
                 <div class="card-footer">
-                    <a href="/lab" class="btn btn-danger btn-block btn">
+                    <a href="{{ route('lab.index') }}" class="btn btn-danger btn-block btn">
                         <i class="fas fa-arrow-left fa-fw"></i> Kembali
                     </a>
                 </div>

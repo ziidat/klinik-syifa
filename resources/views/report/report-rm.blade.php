@@ -80,6 +80,7 @@
               </address>
             @endforeach
             </form>
+            @endif
       </div>
     </div>
     @foreach ($datas as $data)
@@ -117,7 +118,7 @@
               :
           </div>
           <div class="col-sm-8">
-              <p class="text-md-left">{{ $data->ku }}</p>
+              <p class="text-md-left">{{ $data->keluhan }}</p>
           </div>
       </div>
       <div class="form-group row">
@@ -133,13 +134,13 @@
       </div>
       <div class="form-group row">
           <div class="col-sm-3 text-md-right">
-              <label for="keluhan-utama"><strong>Pemeriksaan Fisix</strong></label>
+              <label for="keluhan-utama"><strong>Pemeriksaan Fisik</strong></label>
           </div>
           <div class="col-sm-1 text-md-center">
               :
           </div>    
           <div class="col-sm-8">
-              <p class="text-md-left">{{ $data->pxfisik}}</p>
+              <p class="text-md-left">{{ $data->cekfisik}}</p>
           </div>
       </div>
       <div class="form-group row">
@@ -151,7 +152,7 @@
           </div>
           <div class="col-sm-8">
               @if ($data->lab != NULL)
-              @for ($i=0;$i<$num['lab'];$i++) <li> {{get_value('lab',array_keys($data->labhasil)[$i],'nama')}} : {{$data->labhasil[array_keys($data->labhasil)[$i]]}} {{get_value('lab',array_keys($data->labhasil)[$i],'satuan')}} </li>
+              @for ($i=0;$i<$num['lab'];$i++) <li> {{get_value('lab',array_keys($data->labhasil)[$i],'nama')}} : {{$data->labhasil[array_keys($data->labhasil)[$i]]}} {{get_value('lab',array_keys($data->labhasil)[$i],'satuan')}} | Nilai Normal : {{get_value('lab',array_keys($data->labhasil)[$i],'nn')}} </li>
               
               @endfor
               @endif
@@ -179,7 +180,7 @@
           <div class="col-sm-8">
           @if ($data->resep != NULL)                          
               @for ($i=0;$i<$num['resep'];$i++)
-                  <li class="text-md-left">{{get_value('obat',array_keys($data->allresep)[$i],'nama_obat')}} {{get_value('obat',array_keys($data->allresep)[$i],'sediaan')}} {{get_value('obat',array_keys($data->allresep)[$i],'dosis')}}  {{$data->allresep[array_keys($data->allresep)[$i]]}}</li>
+                  <li class="text-md-left">{{get_value('obat',array_keys($data->allresep)[$i],'nama')}} {{get_value('obat',array_keys($data->allresep)[$i],'jenis')}} {{get_value('obat',array_keys($data->allresep)[$i],'dosis')}}  {{$data->allresep[array_keys($data->allresep)[$i]]}}</li>
               @endfor
              @endif
           </div>

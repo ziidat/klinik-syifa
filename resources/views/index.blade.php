@@ -19,7 +19,10 @@
           <div class="icon">
             <i class="fas fa-user-friends"></i>
           </div>
+          @if (Auth::user()->profesi == "Petugas") 
           <a href="{{route('pasien.index')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          @else
+          @endif
         </div>
       </div>
       <!-- ./col -->
@@ -28,13 +31,15 @@
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{$jumlah['kunjungan']}}</h3>
-
             <h5>Total Pengunjung</h5>
           </div>
           <div class="icon">
             <i class="fas fa-head-side-virus"></i>
           </div>
-          <a href="{{route('rm.index')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          @if (Auth::user()->profesi == "Petugas") 
+          <a href="{{route('rm')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          @else
+          @endif
         </div>
       </div>
       <!-- ./col -->
@@ -49,7 +54,10 @@
           <div class="icon">
             <i class="nav-icon fas fa-capsules"></i>
           </div>
+          @if (Auth::user()->profesi == "Petugas") 
           <a href="{{route('obat.index')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          @else
+          @endif
         </div>
       </div>
       <!-- ./col -->
@@ -64,7 +72,10 @@
           <div class="icon">
             <i class="nav-icon fas fa-flask"></i>
           </div>
+          @if (Auth::user()->profesi == "Petugas") 
           <a href="{{route('lab.index')}}" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          @else
+            @endif
         </div>
       </div>
       <!-- ./col -->
@@ -123,17 +134,17 @@ $(function () {
           pointHighlightStroke: 'rgba(60,141,188,1)',
           data                : [28, 48, 40, 19, 86, 27, 90]
         },
-        {
-          label               : 'Electronics',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
-          pointRadius         : false,
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
-        },
+        // {
+        //   label               : 'Electronics',
+        //   backgroundColor     : 'rgba(210, 214, 222, 1)',
+        //   borderColor         : 'rgba(210, 214, 222, 1)',
+        //   pointRadius         : false,
+        //   pointColor          : 'rgba(210, 214, 222, 1)',
+        //   pointStrokeColor    : '#c1c7d1',
+        //   pointHighlightFill  : '#fff',
+        //   pointHighlightStroke: 'rgba(220,220,220,1)',
+        //   data                : [65, 59, 80, 81, 56, 55, 40]
+        // },
       ]
     }
 

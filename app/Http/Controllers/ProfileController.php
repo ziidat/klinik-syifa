@@ -77,7 +77,9 @@ class ProfileController extends Controller
                 'admin' => $data['admin'],
             ]);
         }
-
-    return redirect()->route('dashboard')->with('pesan','Data Profil Berhasil Disimpan');
+        session()->flash('warning', 'Data Profil Berhasil di ubah');
+    return redirect()->route('profile.edit');
+    
 }
+
 }

@@ -74,7 +74,7 @@
                                 <select id="profesi" type="text" class="form-control @error('profesi') is-invalid @enderror" name="profesi" required>
                                     <option value="" selected>Pilih Profesi</option>
                                     <option value="Dokter" >Dokter</option>
-                                    <option value="Staff">Staff</option>
+                                    <option value="Petugas">Petugas</option>
                                     @error('profesi')
                                     <span class="invalid-feedback" role="alert"
                                     <strong>{{ $message }}</strong>

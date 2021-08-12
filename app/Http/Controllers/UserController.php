@@ -86,6 +86,6 @@ class UserController extends Controller
         $user->delete();
 
         session()->flash('destroy', 'Data User Berhasil di hapus');
-        return redirect('auth.user');
+        return redirect('user');
     }
 }

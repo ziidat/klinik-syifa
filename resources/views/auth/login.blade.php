@@ -42,9 +42,9 @@
     <h1 class="h3 mb-3 fw-normal">Klinik Syifa Medikana</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-      @error('email')
+      <input type="username" class="form-control @error('username') is-invalid @enderror" id="floatingInput"  name="username" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="user">
+      <label for="floatingInput">Username</label>
+      @error('username')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
