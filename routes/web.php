@@ -54,7 +54,7 @@ Route::get('/user', ['as' => 'user.index', 'uses' => 'UserController@index'])->m
 Route::get('/register', ['as' => 'register', 'uses' => 'RegistrationController@create'])->middleware('auth','admin');;
 Route::post('/register', ['as' => 'register', 'uses' => 'RegistrationController@register'])->middleware('auth','admin');;
 // });
-Route::get('/login', ['as' => 'login', 'uses' => 'LoginController@create']);
+// Route::get('/login', ['as' => 'login', 'uses' => 'LoginController@create']);
 
 
 //Tagihan
@@ -74,9 +74,9 @@ Auth::routes([
   'reset' => false
 ]);
 
-Route::group(['prefix' => 'users'], function(){
-    Route::auth();
-    });
+// Route::group(['prefix' => 'users'], function(){
+//     Route::auth();
+//     });
 //Users
 Route::get('users/profile', 'ProfileController@index')->name('profile.edit')->middleware('auth');
 Route::get('users/profile/{id}', 'ProfileController@edit')->name('profile.edit.admin')->middleware('auth','admin');
