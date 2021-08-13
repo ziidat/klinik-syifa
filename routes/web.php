@@ -74,9 +74,9 @@ Auth::routes([
   'reset' => false
 ]);
 
-// Route::group(['prefix' => 'users'], function(){
-//     Route::auth();
-//     });
+Route::group(['prefix' => 'users'], function(){
+    Route::auth();
+    });
 //Users
 Route::get('users/profile', 'ProfileController@index')->name('profile.edit')->middleware('auth');
 Route::get('users/profile/{id}', 'ProfileController@edit')->name('profile.edit.admin')->middleware('auth','admin');
