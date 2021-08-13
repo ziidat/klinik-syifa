@@ -45,10 +45,10 @@ class ProfileController extends Controller
         ]);
         if ($data->avatar !== NULL) {
             $avatarname='avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
-            $data->avatar->storeAs('public/storage/avatars',$avatarname);
+            $data->avatar->storeAs('public/avatars',$avatarname);
             $oldpic = User::find($data->id)->select('avatar')->first();
             if ($oldpic->avatar == "default.jpg") {
-                Storage::delete('public/storage/avatars/'. $oldpic->avatar);
+                Storage::delete('public/avatars/'. $oldpic->avatar);
             }
             
             
