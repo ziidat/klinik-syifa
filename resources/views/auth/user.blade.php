@@ -5,11 +5,12 @@
 @section('container')
 <div class="card shadow mb-4">
   <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
-    <a href="{{route('register')}}" class="d-none d-sm-inline-block btn btn-info btn-sm shadow-sm">
+    <a href="{{route('register')}}" class="btn btn-info btn-sm shadow-sm">
       <i class="fas fa-plus fa-sm"></i> Tambah Pengguna</a> 
-      <a href="{{route('pengaturan')}}" class="d-none d-sm-inline-block btn btn-success btn-sm shadow-sm">
+      <a href="{{route('pengaturan')}}" class="btn btn-success btn-sm shadow-sm">
         <i class="fas fa-user fa-sm"></i> Jasa Dokter</a>                
   </div>
+  <div class="collapse show" id="user" style="">
   <div class="card-body">
     <table id="example1" class="table table-bordered table-striped">
       <thead>
@@ -46,6 +47,7 @@
       </tbody>
     </table>
   </div>
+</div>
 </div>
 @endsection
 @section('script')

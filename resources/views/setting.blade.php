@@ -35,7 +35,7 @@
                             <div class="col-sm-4 mb-3 mb-sm-0">
                             </div>
                             <div class="col-sm-1 mb-3 mb-sm-0">
-                                <a href="{{ route('user') }}" class="btn btn-danger btn-block btn">
+                                <a href="{{ route('user.index') }}" class="btn btn-danger btn-block btn">
                                     <i class="fas fa-arrow-left fa-fw"></i> Kembali
                                 </a>
                             </div>
